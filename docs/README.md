@@ -13,29 +13,29 @@ Sie wird nicht automatisch vom Agenten geladen — sie ist für Menschen gedacht
 
 ## Wer liest was, wann?
 
-| Situation                                             | Datei                                                                  |
-| ----------------------------------------------------- | ---------------------------------------------------------------------- |
-| Neue Session / Agent startet                          | `CLAUDE.md` (auto-geladen) + aktueller Season-Prompt                   |
-| Aufgabe: Code schreiben / refactorn                   | + `CODING_RULES.md`                                                    |
-| Aufgabe: Markdown schreiben / bearbeiten              | + `MARKDOWN_RULES.md`                                                  |
-| Überblick: was ist überhaupt drin?                    | `FEATURES.md`                                                          |
-| Überblick: was kommt als nächstes?                    | `ROADMAP.md` + aktuelle `ROADMAP_PHASE<N>.md`                          |
-| Frage „warum haben wir das damals so gebaut?"         | `ENTSCHEIDUNGEN.md`                                                    |
-| Frage „was hat sich diese Woche getan?"               | `CHANGELOG.md` (oberer Eintrag)                                        |
-| Neue Season vorbereiten                               | `SEASON_PROMPT_TEMPLATE.md`                                            |
-| Code-Review starten                                   | `CODE_REVIEW_TEMPLATE.md` + passende `CODE_REVIEW_OFFEN_<BEREICH>.md`  |
+| Situation                                     | Datei                                                                 |
+| --------------------------------------------- | --------------------------------------------------------------------- |
+| Neue Session / Agent startet                  | `CLAUDE.md` (auto-geladen) + aktueller Season-Prompt                  |
+| Aufgabe: Code schreiben / refactorn           | + `CODING_RULES.md`                                                   |
+| Aufgabe: Markdown schreiben / bearbeiten      | + `MARKDOWN_RULES.md`                                                 |
+| Überblick: was ist überhaupt drin?            | `FEATURES.md`                                                         |
+| Überblick: was kommt als nächstes?            | `ROADMAP.md` + aktuelle `ROADMAP_PHASE<N>.md`                         |
+| Frage „warum haben wir das damals so gebaut?" | `ENTSCHEIDUNGEN.md`                                                   |
+| Frage „was hat sich diese Woche getan?"       | `CHANGELOG.md` (oberer Eintrag)                                       |
+| Neue Season vorbereiten                       | `SEASON_PROMPT_TEMPLATE.md`                                           |
+| Code-Review starten                           | `CODE_REVIEW_TEMPLATE.md` + passende `CODE_REVIEW_OFFEN_<BEREICH>.md` |
 
 ## Wer schreibt was, wann?
 
-| Auslöser                                               | Ziel-Datei(en)                                             |
-| ------------------------------------------------------ | ---------------------------------------------------------- |
-| Feature wurde implementiert (Nutzer-Signal)            | `CHANGELOG.md` (neuer Abschnitt oben) + `FEATURES.md` (Status) + `ROADMAP_PHASE<N>.md` (Status) |
-| Architektur-/Scope-Entscheidung getroffen              | `ENTSCHEIDUNGEN.md` (neuer *Warum*-Eintrag)                |
-| Neues Modul / neuer Datenflusses dazugekommen          | `ARCHITEKTUR.md`                                           |
-| Neues Feature eingeplant                               | passende `ROADMAP_PHASE<N>.md`                             |
-| Neue Phase eröffnet                                    | `ROADMAP.md` (Tabelle) + neue `ROADMAP_PHASE<N>.md` anlegen |
-| Code-Review fand bewusst offen gelassene Befunde       | `CODE_REVIEW_OFFEN_<BEREICH>.md` anlegen / erweitern       |
-| Neue projektspezifische Coding-Konvention              | `CODING_RULES.md`                                          |
+| Auslöser                                         | Ziel-Datei(en)                                                                                  |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| Feature wurde implementiert (Nutzer-Signal)      | `CHANGELOG.md` (neuer Abschnitt oben) + `FEATURES.md` (Status) + `ROADMAP_PHASE<N>.md` (Status) |
+| Architektur-/Scope-Entscheidung getroffen        | `ENTSCHEIDUNGEN.md` (neuer *Warum*-Eintrag)                                                     |
+| Neues Modul / neuer Datenflusses dazugekommen    | `ARCHITEKTUR.md`                                                                                |
+| Neues Feature eingeplant                         | passende `ROADMAP_PHASE<N>.md`                                                                  |
+| Neue Phase eröffnet                              | `ROADMAP.md` (Tabelle) + neue `ROADMAP_PHASE<N>.md` anlegen                                     |
+| Code-Review fand bewusst offen gelassene Befunde | `CODE_REVIEW_OFFEN_<BEREICH>.md` anlegen / erweitern                                            |
+| Neue projektspezifische Coding-Konvention        | `CODING_RULES.md`                                                                               |
 
 ## Was explizit NICHT hier landet
 

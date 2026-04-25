@@ -25,12 +25,12 @@ Dieses Template an den Anfang jedes neuen Season-Prompts kopieren und ausfüllen
 
 ## Welche Roadmap-Datei angeben?
 
-| Aufgabe gehört zu     | Datei                              |
-| --------------------- | ---------------------------------- |
-| Minimal-Lauffähigkeit | `docs/ROADMAP_PHASE1.md`           |
-| Intelligente Erweiterungen / v1.0 | `docs/ROADMAP_PHASE2.md`   |
-| Langfristige Features | `docs/ROADMAP_PHASE3.md`           |
-| Unklar / übergreifend | `docs/ROADMAP.md` (Übersicht)      |
+| Aufgabe gehört zu                 | Datei                         |
+| --------------------------------- | ----------------------------- |
+| Minimal-Lauffähigkeit             | `docs/ROADMAP_PHASE1.md`      |
+| Intelligente Erweiterungen / v1.0 | `docs/ROADMAP_PHASE2.md`      |
+| Langfristige Features             | `docs/ROADMAP_PHASE3.md`      |
+| Unklar / übergreifend             | `docs/ROADMAP.md` (Übersicht) |
 
 ---
 

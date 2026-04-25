@@ -13,11 +13,50 @@ Features haben keine feste Reihenfolge.
 
 ---
 
-## Feature: <Name>
+## Bereich: UI / Frontend
 
-Kurze Beschreibung, was das Feature liefert und warum es in Phase 1 muss (und nicht später).
+Features die die Benutzeroberfläche betreffen.
+
+### Feature: <Name>
+
+Kurze Beschreibung, was das Feature liefert und warum es in Phase 1 muss.
 
 - *(konkreter Bulletpoint)*
+
+---
+
+## Bereich: Core / Geschäftslogik
+
+Features die die Kernlogik betreffen.
+
+### Feature: <Name>
+
+Kurze Beschreibung.
+
+- *(konkreter Bulletpoint)*
+
+---
+
+## Bereich: Datenbank / Persistenz
+
+Features die Datenspeicherung und -zugriff betreffen.
+
+### Feature: <Name>
+
+Kurze Beschreibung.
+
+- *(konkreter Bulletpoint)*
+
+---
+
+## Bereich: API / Integration
+
+Features die externe Schnittstellen oder Dienste betreffen.
+
+### Feature: <Name>
+
+Kurze Beschreibung.
+
 - *(konkreter Bulletpoint)*
 
 ---

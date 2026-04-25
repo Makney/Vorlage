@@ -1,82 +1,155 @@
-# Coding-Regeln ({{PROJEKT_NAME}})
+# Coding Rules ({{PROJEKT_NAME}})
 
-Projektspezifische Konventionen. Ergänzung — nicht Ersatz — zu den allgemeinen Regeln in [CLAUDE.md](../CLAUDE.md) (Abschnitt „Coding-Verhalten").
+All mandatory coding rules in one place — core principles and project-specific conventions.
 
-**Hierarchie bei Konflikten:** `CLAUDE.md` > `CODING_RULES.md` > Stack-Standard (z.B. PEP 8 / Prettier / rustfmt).
+**Conflict hierarchy:** `CLAUDE.md` > `CODING_RULES.md` > stack standard (e.g. PEP 8 / Prettier / rustfmt).
 
-Diese Datei wird **nur bei Bedarf** gelesen (bei Implementierungs- oder Refactor-Aufgaben), nicht standardmäßig geladen.
+This file is read **only on demand** (for implementation or refactor tasks), not loaded by default.
+
+---
+
+## Core Principles (mandatory)
+
+### Think First, Then Code
+
+**No assumptions. Raise confusion. Name tradeoffs.**
+
+Before implementing:
+
+- State assumptions explicitly — when in doubt, ask.
+- If the task has multiple valid interpretations, present both — don't silently pick one.
+- If there is a simpler approach, say so. Push back when it makes sense.
+- If something is unclear: stop. Name exactly what is unclear. Ask.
+
+### Simplicity First
+
+**Minimal code that solves the problem. Nothing speculative.**
+
+- No features that were not asked for.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that was not requested.
+- No error handling for impossible scenarios.
+- If 200 lines emerged that could be 50 → rewrite.
+
+Self-check: "Would an experienced developer call this over-engineered?" → Yes = simplify.
+
+### Surgical Changes
+
+**Only touch what is necessary. Only clean up your own mess.**
+
+When editing existing code:
+
+- Don't improve, reformat, or refactor "adjacent" code.
+- Don't touch working code.
+- Adopt the existing style, even if you'd do it differently.
+- Found unused code? Mention it – don't delete it.
+
+Clean up your own changes:
+
+- Remove imports / variables / functions that became orphaned *due to your own changes*.
+- Leave previously existing dead code alone, unless explicitly asked.
+
+Test: Every changed line must be directly traceable to the task.
+
+### Goal-Oriented Implementation
+
+**Define success criteria. Loop until verified.**
+
+Translate tasks into verifiable goals:
+
+- "Add validation" → "What is the exact input error case that needs to be caught?"
+- "Fix the bug" → "How do I reproduce it, and how do I know it's gone?"
+
+For multi-step tasks, present a short plan upfront:
+
+```
+1. [Step] → Verification: [check]
+2. [Step] → Verification: [check]
+```
+
+Strong success criteria allow autonomous iteration. Weak criteria ("make it work") force clarification questions after failures.
 
 ---
 
 ## 1. Naming
 
-- Module / Funktionen / Variablen: `<stil vom stack: snake_case | camelCase | …>`.
-- Klassen / Typen: `<stil: PascalCase | …>`.
-- Konstanten: `<stil: UPPER_SNAKE_CASE | …>`.
-- Private Symbole: `<konvention: führender Unterstrich | #-Prefix | private-Keyword | …>`.
-- Boolean-Namen: Präfix `is_`, `has_`, `should_`.
+- Modules / functions / variables: `<stack style: snake_case | camelCase | …>`.
+- Classes / types: `<style: PascalCase | …>`.
+- Constants: `<style: UPPER_SNAKE_CASE | …>`.
+- Private symbols: `<convention: leading underscore | #-prefix | private keyword | …>`.
+- Boolean names: prefix `is_`, `has_`, `should_`.
 
-## 2. Imports / Module
+## 2. Imports / Modules
 
-- Block-Reihenfolge: 1) Stdlib · 2) Third-Party · 3) Projekt-lokal (je getrennt durch Leerzeile).
-- Innerhalb jedes Blocks alphabetisch.
-- **Keine Wildcard-Imports.**
-- Ungenutzte Imports entfernen — aber nur, wenn sie durch eigene Änderungen verwaist sind (CLAUDE.md Regel 3).
-- Relative Imports nur innerhalb eines Pakets, sonst absolute.
+- Block order: 1) stdlib · 2) third-party · 3) project-local (each separated by blank line).
+- Within each block: alphabetical.
+- **No wildcard imports.**
+- Remove unused imports — but only if they became orphaned due to your own changes (→ Surgical Changes).
+- Relative imports only within a package, otherwise absolute.
 
-## 3. Type-Hints / Typisierung
+## 3. Type Hints / Typing
 
-- Wenn vom Stack unterstützt: Public-API immer annotiert, interne Helfer nach Bedarf.
-- Konsistenz innerhalb einer Funktion: alle Parameter **und** Return-Type, oder gar nicht.
-- `Any` / `unknown` / `object` nur wenn unvermeidbar, mit Kommentar warum.
+- If supported by the stack: public API always annotated, internal helpers as needed.
+- Consistency within a function: all parameters **and** return type, or none at all.
+- `Any` / `unknown` / `object` only when unavoidable, with a comment explaining why.
 
-## 4. Docstrings & Kommentare
+## 4. Docstrings & Comments
 
-- Sprache: **{{KOMMENTAR_SPRACHE}}** (aus CLAUDE.md). Gilt für Docstrings und Inline-Kommentare.
-- Docstrings nur wo sie echten Mehrwert bringen:
-  - Public-Funktionen mit nicht-trivialem Verhalten
-  - Komplexe Algorithmen
-  - Stack-/Framework-Spezialitäten, die über Standard hinausgehen
-- Einfache Getter / Setter / triviale Wrapper brauchen **keinen** Docstring.
-- Inline-Kommentare: **warum**, nicht **was**. Redundante Kommentare weglassen.
+- Language: **{{KOMMENTAR_SPRACHE}}** (from CLAUDE.md). Applies to docstrings and inline comments.
+- Docstrings only where they add real value:
+  - Public functions with non-trivial behavior
+  - Complex algorithms
+  - Stack/framework specifics beyond the standard
+- Simple getters / setters / trivial wrappers need **no** docstring.
+- Inline comments: **why**, not **what**. Leave out redundant comments.
 
-## 5. Funktions- & Methoden-Design
+## 5. Function & Method Design
 
-- Richtwert: ~50 Zeilen pro Funktion. Kein harter Grenzwert — wenn etwas inhaltlich 80 Zeilen braucht, ist das OK. Ab >100 Zeilen: Teilschritte extrahieren prüfen.
-- Eine Funktion macht **eine Sache**. Handler, die fünf unabhängige Dinge tun → aufteilen.
-- Parameter-Anzahl: Richtwert ≤ 5. Darüber: Datenobjekt erwägen (aber nicht schematisch — siehe CLAUDE.md Regel 2).
-- Keine mutablen Defaults (sprachabhängige Falle — prüfen, ob dein Stack das Problem hat).
+- Guideline: ~50 lines per function. No hard limit — if something genuinely needs 80 lines, that's OK. Above 100 lines: consider extracting sub-steps.
+- One function does **one thing**. Handlers doing five independent things → split up.
+- Parameter count: guideline ≤ 5. Beyond that: consider a data object (but not schematically — → Simplicity First).
+- No mutable defaults (language-specific pitfall — check if your stack has this problem).
 
-## 6. Error-Handling
+## 6. Error Handling
 
-- **Nur für reale Szenarien** (CLAUDE.md Regel 2). Kein spekulatives Try/Catch.
-- Fänge so spezifisch wie möglich. Generische Top-Level-Catches nur am Rand der Anwendung (Request-Handler, Worker), dann mit Logging/User-Feedback.
-- Niemals stumme `catch (_) {}` / `except: pass`-Blöcke. Wenn wirklich ignoriert werden soll, mit Kommentar warum.
-- Ressourcen (Verbindungen, Dateien, Locks) über die idiomatische Auto-Cleanup-Konstruktion des Stacks (`with`, `using`, `defer`, RAII …).
+- **Only for real scenarios** (→ Simplicity First). No speculative try/catch.
+- Catch as specifically as possible. Generic top-level catches only at application boundaries (request handler, worker), then with logging/user feedback.
+- Never silent `catch (_) {}` / `except: pass` blocks. If something truly should be ignored, add a comment explaining why.
+- Resources (connections, files, locks) via the stack's idiomatic auto-cleanup construct (`with`, `using`, `defer`, RAII …).
 
-## 7. Persistenz / Datenzugriff
+## 7. Persistence / Data Access
 
-- Bei SQL: Parameter-Binding, **niemals** String-Concatenation (SQL-Injection — auch in Single-User-Projekten als Gewohnheit).
-- Transaktionen explizit, wo mehrere Schreibzugriffe zusammengehören.
-- Schema-Migrationen idempotent.
-- Bei Netz-IO: Timeouts setzen, Retry-Logik nur wo fachlich nötig.
+- For SQL: parameter binding, **never** string concatenation (SQL injection — even in single-user projects, as a habit).
+- Transactions explicitly where multiple writes belong together.
+- Schema migrations idempotent.
+- For network IO: set timeouts, retry logic only where business logic requires it.
 
-## 8. Framework-/Stack-Spezifisches
+## 8. Framework / Stack Specifics
 
-Hier Besonderheiten des gewählten Stacks ergänzen — z.B. Qt-Signals/Slots, React-Hook-Regeln, async/await-Konventionen.
+Add specifics of the chosen stack here — e.g. Qt signals/slots, React hook rules, async/await conventions.
 
-- *(Platzhalter — pro Projekt ausfüllen)*
+- *(Placeholder — fill in per project)*
 
-## 9. Dateigröße & Modul-Grenzen
+### 8.1 Accessibility (WCAG 2.1 / EN 301 549 baseline)
 
-- Richtwert: ≤ 500 Zeilen pro Datei. Darüber: Aufteilung erwägen (aber CLAUDE.md Regel 2 beachten — Aufteilung muss echten Wert haben).
-- Eine Datei = eine klar abgegrenzte Verantwortung (siehe `ARCHITEKTUR.md`).
-- Keine Zyklen in Imports zwischen Modulen.
+Apply to every new interactive widget or component, regardless of stack:
 
-## 10. Was NICHT tun
+- **Keyboard focus:** Interactive elements (buttons, inputs, custom clickable components) must be reachable via keyboard. Standard framework widgets usually have a sensible default; custom subclasses need an explicit focus policy — otherwise they are keyboard-inaccessible.
+- **Decorative elements:** Labels or visuals that carry no interaction need no focus — explicitly set them to no-focus to keep tab order clean.
+- **Accessible names:** Every widget relevant to screen readers gets a descriptive accessible name set at creation time (human-readable, not a technical object name). Add an accessible description for role/status information where needed.
+- **Focus styles:** A global focus style covers standard widgets automatically. Custom widget classes that bypass the framework's focus rendering must draw their own focus indicator — but this is part of the feature that introduces keyboard support, not a requirement at initial creation.
+- **No silent omissions:** If a widget intentionally skips one of the above rules, add a short comment explaining why.
 
-- Keine spekulative Konfigurierbarkeit (CLAUDE.md Regel 2).
-- Kein vorgezogenes Abstrahieren: erst wenn der zweite Call-Site existiert, Helper extrahieren.
-- Keine Präfix-Kommentare-Blöcke wie `# === SECTION === #` — Code sollte durch Struktur sprechen.
-- Keine `TODO:`-Kommentare ohne Kontext. Entweder mit Referenz auf `CODE_REVIEW_OFFEN_<BEREICH>.md` oder gar nicht.
-- Keine Performance-Optimierungen ohne Messung.
+## 9. File Size & Module Boundaries
+
+- Guideline: ≤ 500 lines per file. Beyond that: consider splitting (but respect → Simplicity First — splitting must add real value).
+- One file = one clearly defined responsibility (see `ARCHITEKTUR.md`).
+- No import cycles between modules.
+
+## 10. What NOT to Do
+
+- No speculative configurability (→ Simplicity First).
+- No premature abstraction: only extract a helper when the second call site exists.
+- No prefix comment blocks like `# === SECTION === #` — code should speak through structure.
+- No `TODO:` comments without context. Either with reference to `CODE_REVIEW_OFFEN_<BEREICH>.md` or not at all.
+- No performance optimizations without measurement.

@@ -1,90 +1,90 @@
-# Architektur
+# Architecture
 
-Diese Datei beschreibt den **statischen Aufbau** des Projekts: welche Module existieren, wie sie zusammenhängen, wo Daten liegen. Abgrenzung zu anderen Dokus:
+This file describes the **static structure** of the project: which modules exist, how they relate, and where data lives. Distinction from other docs:
 
-- **CLAUDE.md** → Projekt-Steckbrief (1 Absatz), hier ist der Verweis dahin
-- **ENTSCHEIDUNGEN.md** → *warum* die Struktur so ist (nicht hier)
-- **FEATURES.md / ROADMAP.md** → was davon existiert / wird gebaut (nicht hier)
+- **CLAUDE.md** → Project overview (1 paragraph), reference points here
+- **ENTSCHEIDUNGEN.md** → *why* the structure is the way it is (not here)
+- **FEATURES.md / ROADMAP.md** → what exists / will be built (not here)
 
-## Ordnerstruktur
+## Folder Structure
 
 ```
 {{PROJEKT_NAME}}/
-├── <einstiegspunkt>            # z.B. main.py / index.ts / cmd/<name>/main.go
-├── <dependency-manifest>       # requirements.txt / package.json / Cargo.toml …
-├── <laufzeit-artefakte>        # DB-Datei, Caches — ausgeschlossen über .gitignore
+├── <entry point>               # e.g. main.py / index.ts / cmd/<name>/main.go
+├── <dependency manifest>       # requirements.txt / package.json / Cargo.toml …
+├── <runtime artifacts>         # DB file, caches — excluded via .gitignore
 ├── .gitignore
 │
-├── <layer-1>/                  # z.B. database · core · backend
-│   ├── <modul>.ext
+├── <layer-1>/                  # e.g. database · core · backend
+│   ├── <module>.ext
 │   └── …
 │
-├── <layer-2>/                  # z.B. core · domain · service
+├── <layer-2>/                  # e.g. core · domain · service
 │   └── …
 │
-├── <layer-3>/                  # z.B. ui · frontend · api
+├── <layer-3>/                  # e.g. ui · frontend · api
 │   └── …
 │
-└── docs/                       # Du bist hier
+└── docs/                       # You are here
 ```
 
-Die Schichten sind bewusst getrennt: *oben* importiert aus *unten*, nie umgekehrt. Das hält Geschäftslogik frei von UI-/Framework-Abhängigkeiten und macht spätere Austausche (anderer UI-Stack, anderer Server) handhabbar.
+Layers are intentionally separated: *upper* imports from *lower*, never the reverse. This keeps business logic free from UI/framework dependencies and makes future swaps (different UI stack, different server) manageable.
 
-## Datenfluss beim Start
-
-```
-<Einstiegspunkt>
-  ├─ <schritt 1 — z.B. DB-Init>
-  ├─ <schritt 2 — z.B. Config laden>
-  └─ <schritt 3 — z.B. Hauptfenster / Server starten>
-       └─ <was auf Ebene 3 passiert>
-```
-
-## Datenfluss für <Haupt-Usecase>
-
-Beispiel-Platzhalter — für jeden wichtigen Ablauf (Import / Anfrage / Render-Zyklus …) eine eigene Sequenz dokumentieren:
+## Startup Data Flow
 
 ```
-<Auslöser>
-  → <Aktion in Layer 1>
-  → <Aktion in Layer 2>
-  → <Ergebnis zurück in Layer 3>
+<Entry point>
+  ├─ <step 1 — e.g. DB init>
+  ├─ <step 2 — e.g. load config>
+  └─ <step 3 — e.g. launch main window / server>
+       └─ <what happens at level 3>
 ```
 
-## Datenmodell
+## Data Flow for <Main Use Case>
 
-Wenn das Projekt eine Persistenzschicht hat: Tabellen / Collections / Schemas mit ihrer Beziehung hier knapp dokumentieren.
+Example placeholder — document a separate sequence for each important flow (import / request / render cycle …):
 
-### Tabelle / Collection `<name>`
+```
+<Trigger>
+  → <Action in layer 1>
+  → <Action in layer 2>
+  → <Result returned to layer 3>
+```
 
-| Feld      | Typ | Bedeutung |
-| --------- | --- | --------- |
-| id        |     |           |
-| …         |     |           |
+## Data Model
 
-Beziehungen: `<tabelle_a> (1) ─── (n) <tabelle_b>`.
+If the project has a persistence layer: document tables / collections / schemas and their relationships briefly here.
 
-Was ist **Cache** (wird aus Quelldaten berechnet) vs. **primär** (muss gepflegt werden) — hier sauber markieren, sonst wird es beim ersten „Feld manuell gesetzt, nicht mitgezogen"-Bug schmerzhaft.
+### Table / Collection `<name>`
 
-## Wichtige Konstrukte / Muster
+| Field | Type | Meaning |
+| ----- | ---- | ------- |
+| id    |      |         |
+| …     |      |         |
 
-Hier projektspezifische Patterns dokumentieren, die mehrfach auftauchen und beim Querlesen sonst Stirnrunzeln produzieren. Typische Beispiele:
+Relationships: `<table_a> (1) ─── (n) <table_b>`.
 
-- **Signal-/Event-Richtung** — wie kommunizieren Komponenten nach außen?
-- **Thread-/Async-Modell** — wer darf UI anfassen, wer nicht?
-- **Styling-/Theming-Strategie** — zentrale Datei oder Komponenten-lokal?
-- **Konfigurations-Lookup** — woher kommen Werte (ENV, Settings-Store, Config-Datei)?
+Mark clearly what is **cached** (computed from source data) vs. **primary** (must be maintained) — otherwise the first "field set manually, not propagated" bug will be painful.
 
-## Konfiguration / Persistenz
+## Key Constructs / Patterns
 
-| Was                | Wo                                                 |
-| ------------------ | -------------------------------------------------- |
-| Nutzer-Einstellungen | `<Store>` — z.B. QSettings, OS-Keychain, config.toml |
-| Projekt-Daten      | `<Datei/DB>` — z.B. `{{PROJEKT_NAME}}.db`          |
-| Generierte Assets  | `<Ordner>` — z.B. `assets/covers/`                 |
-| Secrets            | **nie im Repo** — z.B. `.env` (ignoriert)          |
+Document project-specific patterns that appear repeatedly and would otherwise cause confusion when reading across the codebase. Typical examples:
 
-## Versionierung
+- **Signal/event direction** — how do components communicate outward?
+- **Thread/async model** — who may touch the UI, who may not?
+- **Styling/theming strategy** — central file or component-local?
+- **Configuration lookup** — where do values come from (ENV, settings store, config file)?
 
-- Git-Remote: {{REPO_URL}}
-- `.gitignore` schließt Laufzeit-Artefakte aus (siehe Datei).
+## Configuration / Persistence
+
+| What             | Where                                                  |
+| ---------------- | ------------------------------------------------------ |
+| User settings    | `<Store>` — e.g. QSettings, OS Keychain, config.toml  |
+| Project data     | `<File/DB>` — e.g. `{{PROJEKT_NAME}}.db`              |
+| Generated assets | `<Folder>` — e.g. `assets/covers/`                    |
+| Secrets          | **never in repo** — e.g. `.env` (ignored)             |
+
+## Versioning
+
+- Git remote: {{REPO_URL}}
+- `.gitignore` excludes runtime artifacts (see file).

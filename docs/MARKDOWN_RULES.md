@@ -1,130 +1,130 @@
-# Markdown-Regeln ({{PROJEKT_NAME}})
+# Markdown Rules ({{PROJEKT_NAME}})
 
-Verbindliche Formatierungsregeln für **alle** `.md`-Dateien im Projekt.
-Ziel: einheitliches Erscheinungsbild, saubere Git-Diffs, schnelles Parsing durch den Agenten.
+Mandatory formatting rules for **all** `.md` files in the project.
+Goal: consistent appearance, clean git diffs, fast parsing by the agent.
 
-Beim Erstellen oder Bearbeiten einer Markdown-Datei: diese Regeln als Checkliste abarbeiten.
+When creating or editing a markdown file: work through these rules as a checklist.
 
 ---
 
-## 1. Dateinamen
+## 1. File Names
 
-- `SCREAMING_SNAKE_CASE.md` für Doku-Dateien (z.B. `FEATURES.md`, `ROADMAP_PHASE2.md`).
-- Ausnahmen: `README.md`, `CLAUDE.md` (Konvention).
-- Code-Review-Dateien: `CODE_REVIEW_OFFEN_<BEREICH>.md` – Bereich statt fortlaufender Nummer. Bei Bedarf Unterbereich mit weiterem `_` anhängen.
+- `SCREAMING_SNAKE_CASE.md` for documentation files (e.g. `FEATURES.md`, `ROADMAP_PHASE2.md`).
+- Exceptions: `README.md`, `CLAUDE.md` (convention).
+- Code review files: `CODE_REVIEW_OFFEN_<BEREICH>.md` – area instead of sequential number. Append sub-area with another `_` if needed.
 
-## 2. Überschriften
+## 2. Headings
 
-- **Nur ATX-Stil** (`#`, `##`, `###`). Kein Setext (Unterstreichung).
-- Genau eine Leerzeile **vor** und **nach** jeder Überschrift.
-- `#` = Dateititel, **einmal pro Datei** ganz oben.
-- Hierarchie nicht überspringen (`##` → `###`, nicht `##` → `####`).
+- **ATX style only** (`#`, `##`, `###`). No setext (underline style).
+- Exactly one blank line **before** and **after** every heading.
+- `#` = file title, **once per file** at the very top.
+- Don't skip hierarchy levels (`##` → `###`, not `##` → `####`).
 
-## 3. Listen
+## 3. Lists
 
-- Ungeordnete Listen: **`-`** (Bindestrich). Niemals `*` oder `+`.
-- Geordnete Listen: `1.`, `2.`, `3.` …
-- Einrückung Sub-Listen: **2 Leerzeichen** (nicht 4, keine Tabs).
-- Vor der ersten Listenzeile eine Leerzeile; Listen nicht direkt an eine Überschrift kleben.
+- Unordered lists: **`-`** (hyphen). Never `*` or `+`.
+- Ordered lists: `1.`, `2.`, `3.` …
+- Sub-list indentation: **2 spaces** (not 4, no tabs).
+- One blank line before the first list item; don't attach lists directly to a heading.
 
 ## 4. Code
 
-- Fenced Code Blocks mit **Sprach-Tag**: ` ```python `, ` ```sql `, ` ```bash `, ` ```ts `.
-- ASCII-Art / Tree-Diagramme: Fence ohne Sprach-Tag ist OK.
-- Inline-Code mit Backticks für: Dateinamen, Pfade, Funktionsnamen, Klassen, Variablen, CLI-Kommandos, Spaltennamen.
+- Fenced code blocks with **language tag**: ` ```python `, ` ```sql `, ` ```bash `, ` ```ts `.
+- ASCII art / tree diagrams: fence without language tag is OK.
+- Inline code with backticks for: file names, paths, function names, classes, variables, CLI commands, column names.
 
-## 5. Tabellen
+## 5. Tables
 
-- Standard-Pipe-Syntax: `| Spalte | Spalte |`, Trennlinie `| --- | --- |`.
-- Links-Alignment (Default) – keine `:---:` / `---:` Varianten verwenden.
-- Eine Leerzeile vor und nach der Tabelle.
+- Standard pipe syntax: `| Column | Column |`, separator line `| --- | --- |`.
+- Left-alignment (default) — no `:---:` / `---:` variants.
+- One blank line before and after the table.
 
-## 6. Hervorhebungen
+## 6. Emphasis
 
-- `**bold**` für **Wichtiges**, Feature-Namen, UI-Menüpunkte.
-- `*italic*` **sparsam** für Betonung einzelner Begriffe.
-- Kein `__bold__`, kein `_italic_` (Unterstrich-Varianten).
-- Niemals ganze Absätze fett setzen.
+- `**bold**` for **important items**, feature names, UI menu items.
+- `*italic*` **sparingly** for emphasis on individual terms.
+- No `__bold__`, no `_italic_` (underscore variants).
+- Never bold entire paragraphs.
 
-## 7. Emojis (geschlossenes Set)
+## 7. Emojis (closed set)
 
-**Nur diese fünf Emojis sind erlaubt. Keine Erweiterung ohne Absprache.**
+**Only these five emojis are allowed. No extension without discussion.**
 
-| Emoji | Bedeutung                     | Einsatz                      |
+| Emoji | Meaning                       | Usage                        |
 | ----- | ----------------------------- | ---------------------------- |
-| ✅     | abgeschlossen / aktiv         | FEATURES, ROADMAP, CHANGELOG |
-| 🟡    | teilweise / in Entwicklung    | FEATURES, ROADMAP            |
-| ⛔     | offen / geplant               | FEATURES, ROADMAP            |
-| ⚠️    | Warnung / wichtiger Hinweis   | ROADMAP, CODE_REVIEW         |
-| 💡    | Idee / Verbesserungsvorschlag | CODE_REVIEW                  |
+| ✅     | done / active                 | FEATURES, ROADMAP, CHANGELOG |
+| 🟡    | partial / in development      | FEATURES, ROADMAP            |
+| ⛔     | open / planned                | FEATURES, ROADMAP            |
+| ⚠️    | warning / important note      | ROADMAP, CODE_REVIEW         |
+| 💡    | idea / improvement suggestion | CODE_REVIEW                  |
 
-- **Kein weiterer Dekor-Emoji-Einsatz** (keine 🚀, 🎉, 📝 etc.).
-- Primär in Status-/Roadmap-/Changelog-/Review-Dateien. README, ARCHITEKTUR, ENTSCHEIDUNGEN bleiben emoji-frei, außer zur Status-Markierung.
+- **No further decorative emoji usage** (no 🚀, 🎉, 📝 etc.).
+- Primarily in status/roadmap/changelog/review files. README, ARCHITEKTUR, ENTSCHEIDUNGEN stay emoji-free, except for status markers.
 
-## 8. Sonderzeichen
+## 8. Special Characters
 
-- **Pfeil `→`** (U+2192) für Querverweise und Richtungsangaben:
-  - `→ docs/FEATURES.md` (Verweis auf Datei)
-  - `⛔ → ✅` (Statuswechsel)
-- **Em-Dash `—`** (U+2014) als Trenner in Überschriften/CHANGELOG-Einträgen:
-  - `## 2026-04-19 — Titel des Eintrags`
-- **Kein `->"**, kein `--`, kein `=>`.
+- **Arrow `→`** (U+2192) for cross-references and directions:
+  - `→ docs/FEATURES.md` (file reference)
+  - `⛔ → ✅` (status change)
+- **Em-dash `—`** (U+2014) as separator in headings/CHANGELOG entries:
+  - `## 2026-04-19 — Entry title`
+- **No `->"`**, no `--`, no `=>`.
 
-## 9. Separatoren
+## 9. Separators
 
-- `---` (drei Bindestriche) als horizontale Trennlinie zwischen großen Abschnitten.
-- Je eine Leerzeile davor und danach.
-- Sparsam einsetzen – nicht nach jeder Überschrift.
+- `---` (three hyphens) as horizontal rule between major sections.
+- One blank line before and after.
+- Use sparingly — not after every heading.
 
 ## 10. Links
 
-- Markdown-Syntax: `[Anzeigetext](./docs/DATEI.md)`.
-- **Immer relativ** und **mit `./`-Präfix** für interne Dokumente:
+- Markdown syntax: `[Display text](./docs/FILE.md)`.
+- **Always relative** and **with `./` prefix** for internal documents:
   - ✅ `[Features](./docs/FEATURES.md)`
   - ⛔ `[Features](docs/FEATURES.md)`
   - ⛔ `[Features](/docs/FEATURES.md)`
-- Externe Links: volle URL `https://…`.
-- Zeilen-Referenzen im Code: `[datei.ext:42](./modul/datei.ext)` (ohne Line-Anchor – wird nicht gerendert, aber Konvention halten).
+- External links: full URL `https://…`.
+- Code line references: `[file.ext:42](./module/file.ext)` (no line anchor – not rendered, but keep the convention).
 
 ## 11. Frontmatter
 
-- **Keine** YAML-Frontmatter (`---\n...\n---` am Dateianfang).
-- Metadaten stehen im Fließtext oder in Tabellen.
+- **No** YAML frontmatter (`---\n...\n---` at file start).
+- Metadata goes in flowing text or tables.
 
-## 12. Zeilenlänge
+## 12. Line Length
 
-- **Kein Hard-Wrap.** Absätze als eine fließende Zeile schreiben.
-- Grund: Git-Diffs bleiben bei Wortänderungen sauber, Renderer bricht selbst um.
-- Ausnahme: Listen, Tabellen, Code – da natürlicher Umbruch pro Eintrag.
+- **No hard wrap.** Write paragraphs as one flowing line.
+- Reason: git diffs stay clean on word changes, renderers wrap automatically.
+- Exception: lists, tables, code — natural line break per entry there.
 
-## 13. CHANGELOG-Format
+## 13. CHANGELOG Format
 
-- Neuer Eintrag **oben** in `docs/CHANGELOG.md`.
-- Überschrift: `## YYYY-MM-DD — Titel` (em-dash `—`, keine Binde- oder Spiegelstriche).
-- Unterabschnitte wenn nötig als `###`.
-- **Keine** „Geänderte Dateien"-Listen (liefert Git-History).
+- New entry **at the top** of `docs/CHANGELOG.md`.
+- Heading: `## YYYY-MM-DD — Title` (em-dash `—`, no hyphens or dashes).
+- Sub-sections when needed as `###`.
+- **No** "changed files" lists (git history provides that).
 
 ## 14. Blockquotes / Callouts
 
-- Standard-Blockquote `> …` nur für echte Zitate.
-- **Kein** GitHub-Callout-Syntax (`> [!NOTE]`, `> [!WARNING]`) – stattdessen ⚠️-Emoji + fetten Text.
+- Standard blockquote `> …` only for actual quotes.
+- **No** GitHub callout syntax (`> [!NOTE]`, `> [!WARNING]`) — use ⚠️ emoji + bold text instead.
 
-## 15. Leerzeilen & Whitespace
+## 15. Blank Lines & Whitespace
 
-- Datei endet mit **genau einer** Leerzeile (Newline am Ende).
-- Keine doppelten Leerzeilen zwischen Abschnitten (eine reicht).
-- Keine trailing Spaces am Zeilenende.
+- File ends with **exactly one** blank line (newline at end).
+- No double blank lines between sections (one is enough).
+- No trailing spaces at line end.
 
 ---
 
-## Schnell-Checkliste vor dem Speichern
+## Quick Checklist Before Saving
 
-1. Dateiname in `SCREAMING_SNAKE_CASE.md`?
-2. Nur ein `#`-H1 ganz oben, Hierarchie sauber?
-3. Listen mit `-`, 2-Space-Einrückung?
-4. Code-Fences mit Sprach-Tag?
-5. Nur Emojis aus dem geschlossenen Set (✅ 🟡 ⛔ ⚠️ 💡)?
-6. Interne Links mit `./`-Präfix?
-7. Keine Frontmatter, kein Hard-Wrap?
-8. Em-Dash `—` statt `-` in Datums-Überschriften?
-9. Datei endet mit genau einer Newline?
+1. File name in `SCREAMING_SNAKE_CASE.md`?
+2. Only one `#` H1 at the top, hierarchy clean?
+3. Lists with `-`, 2-space indentation?
+4. Code fences with language tag?
+5. Only emojis from the closed set (✅ 🟡 ⛔ ⚠️ 💡)?
+6. Internal links with `./` prefix?
+7. No frontmatter, no hard wrap?
+8. Em-dash `—` instead of `-` in date headings?
+9. File ends with exactly one newline?

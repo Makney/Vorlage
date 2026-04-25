@@ -21,6 +21,46 @@ Typische Phase-3-Themen — alle optional, je nach Projekt-Ausrichtung:
 
 ---
 
+## Bereich: UI / Frontend
+
+Features die die Benutzeroberfläche betreffen.
+
+### Feature: <Name>
+
+- *(konkret)*
+
+---
+
+## Bereich: Core / Geschäftslogik
+
+Features die die Kernlogik betreffen.
+
+### Feature: <Name>
+
+- *(konkret)*
+
+---
+
+## Bereich: Datenbank / Persistenz
+
+Features die Datenspeicherung und -zugriff betreffen.
+
+### Feature: <Name>
+
+- *(konkret)*
+
+---
+
+## Bereich: API / Integration
+
+Features die externe Schnittstellen oder Dienste betreffen.
+
+### Feature: <Name>
+
+- *(konkret)*
+
+---
+
 ## Feature-Block: <Name>
 
 > ⚠️ Diese Features bauen aufeinander auf – Reihenfolge einhalten.
@@ -32,12 +72,6 @@ Typische Phase-3-Themen — alle optional, je nach Projekt-Ausrichtung:
 ### Feature 2: <Name>
 
 **Voraussetzung:** Feature 1
-
-- *(konkret)*
-
----
-
-## Feature: <Name>
 
 - *(konkret)*
 

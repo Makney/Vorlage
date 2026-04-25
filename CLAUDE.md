@@ -1,107 +1,48 @@
-# {{PROJEKT_NAME}} – Agent-Kontext
+# {{PROJEKT_NAME}} – Agent Context
 
-Du bist ein {{AGENT_ROLLE}}.
+You are a {{AGENT_ROLLE}}.
 
 {{KURZBESCHREIBUNG}}.
-Stack: {{STACK}}. Zielplattform: {{ZIELPLATTFORM}}.
-Git-Repo: {{REPO_URL}}
+Stack: {{STACK}}. Target platform: {{ZIELPLATTFORM}}.
+Git repo: {{REPO_URL}}
 
-## Architektur
+## Working Rules (mandatory)
 
-Details → [docs/ARCHITEKTUR.md](./docs/ARCHITEKTUR.md)
+1. **Comment language: {{KOMMENTAR_SPRACHE}}** – Applies to code comments, docstrings, and commit messages.
+2. **Variants before architecture decisions** – For non-trivial scope, first present variants A/B/C with effort table + clear recommendation. User decides.
+3. **Doc updates only on explicit signal** – Only when the user says **"war korrekt umgesetzt"**, then immediately and without prompting:
+   - `docs/CHANGELOG.md` – New section at the top (date · title · what works now). No "changed files" lists – git history provides that.
+   - `docs/FEATURES.md` – ⛔/🟡 → ✅
+   - `docs/ROADMAP_PHASE<N>.md` – Mark completed feature as ✅
+   - `docs/ENTSCHEIDUNGEN.md` – For architecture decisions, add the *why*
+   - `docs/TECH_SCHULDEN.md` – If a conscious shortcut was taken: add entry with risk + resolution.
+   - `docs/SEASON_LOG.md` – Only at **end of season**: add retrospective entry (goal · result · what went well · blockers · hints for next season).
+4. **GitHub commit on explicit signal** – Only when the user says **"commit"**, then immediately and without prompting:
+   1. Stage only changed project files — never `.env`, secrets, or unrelated files.
+   2. Commit with message format: `{{PROJEKT_NAME}}: <short description in {{KOMMENTAR_SPRACHE}}>`.
+   3. `git push`.
 
-## Arbeitsregeln (verbindlich)
+## Current Status
 
-1. **Kommentar-Sprache: {{KOMMENTAR_SPRACHE}}** – Gilt für Code-Kommentare, Docstrings und Commit-Messages.
-2. **Varianten vor Architektur-Entscheidungen** – Bei nicht-trivialem Scope erst Variante A/B/C mit Aufwand-Tabelle + klarer Empfehlung präsentieren. Nutzer entscheidet.
-3. **Doku-Pflege nur auf explizites Signal** – erst wenn der Nutzer
-   **„wurde richtig implementiert"** sagt, dann sofort und ohne Rückfrage:
-   - `docs/CHANGELOG.md` – Neuer Abschnitt oben (Datum · Titel · Was jetzt geht).
-     Keine „Geänderte Dateien"-Listen – das liefert die Git-History.
-   - `docs/FEATURES.md`  – ⛔/🟡 → ✅
-   - `docs/ROADMAP_PHASE<N>.md` – Abgeschlossenes Feature als ✅ markieren
-   - `docs/ENTSCHEIDUNGEN.md` – Bei Architekturentscheidungen das *Warum* ergänzen
+{{CURRENT_PHASE}} actively in development.
 
-## Aktueller Stand
+→ [docs/FEATURES.md](./docs/FEATURES.md)        — Feature status matrix (✅/🟡/⛔)
+→ [docs/ROADMAP.md](./docs/ROADMAP.md)          — Phase overview
+→ [{{AKTUELLE_PHASE_DATEI}}](./{{AKTUELLE_PHASE_DATEI}}) — Open features of the current phase
+→ [docs/CHANGELOG.md](./docs/CHANGELOG.md)      — Recently built features
+→ [docs/ARCHITEKTUR.md](./docs/ARCHITEKTUR.md)  — Module/data flow description
+→ [docs/ENTSCHEIDUNGEN.md](./docs/ENTSCHEIDUNGEN.md) — *Why* decisions
 
-{{CURRENT_PHASE}} aktiv in Entwicklung.
+## On-Demand Files (load only when needed)
 
-→ [docs/FEATURES.md](./docs/FEATURES.md)        — Feature-Status-Matrix (✅/🟡/⛔)
-→ [docs/ROADMAP.md](./docs/ROADMAP.md)          — Phasen-Übersicht
-→ [{{AKTUELLE_PHASE_DATEI}}](./{{AKTUELLE_PHASE_DATEI}}) — Offene Features der aktuellen Phase
-→ [docs/CHANGELOG.md](./docs/CHANGELOG.md)      — Zuletzt gebaute Features
-→ [docs/ARCHITEKTUR.md](./docs/ARCHITEKTUR.md)  — Modul-/Datenfluss-Beschreibung
-→ [docs/ENTSCHEIDUNGEN.md](./docs/ENTSCHEIDUNGEN.md) — *Warum*-Entscheidungen
+These files are **not** loaded by default — read them only when the specific task type arises (keep context small):
 
-## Regel-Dateien (bedarfsweise laden)
-
-Diese Dateien werden **nicht** standardmäßig geladen — nur gezielt lesen, wenn die jeweilige Aufgabenart vorliegt (Kontext klein halten):
-
-- [docs/CODING_RULES.md](./docs/CODING_RULES.md) — **lesen bei Implementierung, Refactoring, Code-Reviews.** Projektspezifische Konventionen (Naming, Imports, Type-Hints, Error-Handling, Stack-Besonderheiten). Ergänzt den Abschnitt „Coding-Verhalten" unten.
-- [docs/MARKDOWN_RULES.md](./docs/MARKDOWN_RULES.md) — **lesen bei Erstellen oder Bearbeiten von `.md`-Dateien.** Formatierungsregeln (Emoji-Set, Links, Hard-Wrap, Heading-Stil etc.).
-
----
-
-## Coding-Verhalten (verbindlich)
-
-*Gelten für jede Season, jedes Projekt.*
-
-### 1. Erst denken, dann coden
-
-**Keine Annahmen. Verwirrung ansprechen. Tradeoffs benennen.**
-
-Vor der Implementierung:
-
-- Annahmen explizit nennen – bei Unsicherheit fragen.
-- Gibt es mehrere Interpretationen der Aufgabe, beide vorlegen – nicht still eine wählen.
-- Gibt es einen einfacheren Weg, sagen. Auch mal zurückfragen wenn sinnvoll.
-- Ist etwas unklar: Stopp. Konkret benennen was unklar ist. Fragen.
-
-### 2. Simplizität zuerst
-
-**Minimaler Code der das Problem löst. Nichts Spekulatives.**
-
-- Keine Features, die nicht gefragt wurden.
-- Keine Abstraktionen für einmalig genutzten Code.
-- Keine „Flexibilität" oder „Konfigurierbarkeit", die nicht verlangt wurde.
-- Kein Error-Handling für unmögliche Szenarien.
-- Sind 200 Zeilen entstanden, die 50 sein könnten → neu schreiben.
-
-Selbstcheck: „Würde ein erfahrener Entwickler das als überkompliziert bezeichnen?" → Ja = vereinfachen.
-
-### 3. Chirurgische Änderungen
-
-**Nur anfassen was nötig ist. Nur eigenen Mess aufräumen.**
-
-Beim Bearbeiten von bestehendem Code:
-
-- Keinen „angrenzenden" Code verbessern, umformatieren oder refactorn.
-- Funktionierenden Code nicht anfassen.
-- Vorhandenen Stil übernehmen, auch wenn man es anders machen würde.
-- Ungenutzten Code entdeckt? Erwähnen – nicht löschen.
-
-Eigene Änderungen aufräumen:
-
-- Imports / Variablen / Funktionen entfernen, die *durch die eigenen Änderungen* verwaist sind.
-- Vorher vorhandenen toten Code in Ruhe lassen, außer explizit beauftragt.
-
-Test: Jede geänderte Zeile muss direkt auf die Aufgabe zurückführbar sein.
-
-### 4. Zielorientierte Umsetzung
-
-**Erfolgskriterien definieren. Bis zur Verifikation loopen.**
-
-Aufgaben in prüfbare Ziele übersetzen:
-
-- „Füge Validierung hinzu" → „Was ist der genaue Eingabe-Fehlerfall, der abgefangen werden soll?"
-- „Behebe den Bug" → „Wie reproduziere ich ihn, und woran erkenne ich dass er weg ist?"
-
-Bei mehrstufigen Aufgaben kurzen Plan vorlegen:
-
-```
-1. [Schritt] → Verifikation: [Prüfung]
-2. [Schritt] → Verifikation: [Prüfung]
-```
-
-Starke Erfolgskriterien erlauben selbstständige Iteration. Schwache Kriterien
-(„mach dass es funktioniert") erzwingen Rückfragen nach Fehlern.
+- [docs/CODING_RULES.md](./docs/CODING_RULES.md) — **Read for implementation, refactoring, code reviews.** Core principles (Simplicity First, Surgical Changes) + project-specific conventions (naming, imports, type hints, error handling, stack specifics).
+- [docs/MARKDOWN_RULES.md](./docs/MARKDOWN_RULES.md) — **Read when creating or editing `.md` files.** Formatting rules (emoji set, links, hard wrap, heading style etc.).
+- [docs/ROADMAP_PHASE1.md](./docs/ROADMAP_PHASE1.md) — **Read for Phase 1 features only.** Load only when implementing or planning a Phase 1 feature.
+- [docs/ROADMAP_PHASE2.md](./docs/ROADMAP_PHASE2.md) — **Read for Phase 2 features only.** Load only when implementing or planning a Phase 2 feature.
+- [docs/ROADMAP_PHASE3.md](./docs/ROADMAP_PHASE3.md) — **Read for Phase 3 features only.** Load only when implementing or planning a Phase 3 feature.
+- [docs/GLOSSAR.md](./docs/GLOSSAR.md) — **Read when a domain term is unclear.** Project-specific vocabulary and abbreviations.
+- [docs/TECH_SCHULDEN.md](./docs/TECH_SCHULDEN.md) — **Read when refactoring or touching known-debt areas.** Intentional shortcuts and their risk/resolution plan.
+- [docs/DEV_SETUP.md](./docs/DEV_SETUP.md) — **Read when setting up the environment or debugging installation issues.** Dependencies, env vars, start commands.
+- [docs/SEASON_LOG.md](./docs/SEASON_LOG.md) — **Read at the start of a new season.** Process retrospectives from past seasons.

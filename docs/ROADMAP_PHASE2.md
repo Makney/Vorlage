@@ -13,11 +13,51 @@ Features haben keine feste Reihenfolge.
 
 ---
 
-## Feature: <Name>
+## Bereich: UI / Frontend
+
+Features die die Benutzeroberfläche betreffen.
+
+### Feature: <Name>
 
 Kurze Beschreibung.
 
-- *(konkret)*
+- *(konkreter Bulletpoint)*
+
+---
+
+## Bereich: Core / Geschäftslogik
+
+Features die die Kernlogik betreffen.
+
+### Feature: <Name>
+
+Kurze Beschreibung.
+
+- *(konkreter Bulletpoint)*
+
+---
+
+## Bereich: Datenbank / Persistenz
+
+Features die Datenspeicherung und -zugriff betreffen.
+
+### Feature: <Name>
+
+Kurze Beschreibung.
+
+- *(konkreter Bulletpoint)*
+
+---
+
+## Bereich: API / Integration
+
+Features die externe Schnittstellen oder Dienste betreffen.
+
+### Feature: <Name>
+
+Kurze Beschreibung.
+
+- *(konkreter Bulletpoint)*
 
 ---
 
