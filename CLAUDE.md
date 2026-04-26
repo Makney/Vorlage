@@ -37,8 +37,6 @@ Git repo: {{REPO_URL}}
 
 These files are **not** loaded by default — read them only when the specific task type arises (keep context small):
 
-- [docs/CODING_RULES.md](./docs/CODING_RULES.md) — **Read for implementation, refactoring, code reviews.** Core principles (Simplicity First, Surgical Changes) + project-specific conventions (naming, imports, type hints, error handling, stack specifics).
-- [docs/MARKDOWN_RULES.md](./docs/MARKDOWN_RULES.md) — **Read when creating or editing `.md` files.** Formatting rules (emoji set, links, hard wrap, heading style etc.).
 - [docs/ROADMAP_PHASE1.md](./docs/ROADMAP_PHASE1.md) — **Read for Phase 1 features only.** Load only when implementing or planning a Phase 1 feature.
 - [docs/ROADMAP_PHASE2.md](./docs/ROADMAP_PHASE2.md) — **Read for Phase 2 features only.** Load only when implementing or planning a Phase 2 feature.
 - [docs/ROADMAP_PHASE3.md](./docs/ROADMAP_PHASE3.md) — **Read for Phase 3 features only.** Load only when implementing or planning a Phase 3 feature.

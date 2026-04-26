@@ -42,3 +42,6 @@ Thumbs.db
 *.log
 tmp/
 temp/
+
+# Persönliche Claude-Overrides
+CLAUDE.local.md

@@ -13,6 +13,7 @@ Dieses Template an den Anfang jedes neuen Season-Prompts kopieren und ausfüllen
 1. `docs/CHANGELOG.md`       — Was wurde zuletzt gebaut? (oberster Eintrag reicht)
 2. `docs/FEATURES.md`        — Aktueller Feature-Status
 3. `docs/ROADMAP_PHASE<N>.md` — Offene Features der aktuellen Phase
+4. `/memory` prüfen          — Veraltete Auto Memory Einträge können CLAUDE.md-Regeln überschreiben
 
 ## Deine Aufgabe
 [HIER: Konkrete Beschreibung was in dieser Season implementiert werden soll]

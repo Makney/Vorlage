@@ -23,19 +23,26 @@ Sie wird nicht automatisch vom Agenten geladen — sie ist für Menschen gedacht
 | Frage „warum haben wir das damals so gebaut?" | `ENTSCHEIDUNGEN.md`                                                   |
 | Frage „was hat sich diese Woche getan?"       | `CHANGELOG.md` (oberer Eintrag)                                       |
 | Neue Season vorbereiten                       | `SEASON_PROMPT_TEMPLATE.md`                                           |
+| Season abgeschlossen — Rückblick schreiben    | `SEASON_LOG.md`                                                       |
+| Begriff oder Abkürzung unklar                 | `GLOSSAR.md`                                                          |
+| Umgebung einrichten / Installationsproblem    | `DEV_SETUP.md`                                                        |
 | Code-Review starten                           | `CODE_REVIEW_TEMPLATE.md` + passende `CODE_REVIEW_OFFEN_<BEREICH>.md` |
 
 ## Wer schreibt was, wann?
 
-| Auslöser                                         | Ziel-Datei(en)                                                                                  |
-| ------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| Feature wurde implementiert (Nutzer-Signal)      | `CHANGELOG.md` (neuer Abschnitt oben) + `FEATURES.md` (Status) + `ROADMAP_PHASE<N>.md` (Status) |
-| Architektur-/Scope-Entscheidung getroffen        | `ENTSCHEIDUNGEN.md` (neuer *Warum*-Eintrag)                                                     |
-| Neues Modul / neuer Datenflusses dazugekommen    | `ARCHITEKTUR.md`                                                                                |
-| Neues Feature eingeplant                         | passende `ROADMAP_PHASE<N>.md`                                                                  |
-| Neue Phase eröffnet                              | `ROADMAP.md` (Tabelle) + neue `ROADMAP_PHASE<N>.md` anlegen                                     |
-| Code-Review fand bewusst offen gelassene Befunde | `CODE_REVIEW_OFFEN_<BEREICH>.md` anlegen / erweitern                                            |
-| Neue projektspezifische Coding-Konvention        | `CODING_RULES.md`                                                                               |
+| Auslöser                                          | Ziel-Datei(en)                                                                                  |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Feature wurde implementiert (Nutzer-Signal)       | `CHANGELOG.md` (neuer Abschnitt oben) + `FEATURES.md` (Status) + `ROADMAP_PHASE<N>.md` (Status) |
+| Architektur-/Scope-Entscheidung getroffen         | `ENTSCHEIDUNGEN.md` (neuer *Warum*-Eintrag)                                                     |
+| Neues Modul / neuer Datenflusses dazugekommen     | `ARCHITEKTUR.md`                                                                                |
+| Neues Feature eingeplant                          | passende `ROADMAP_PHASE<N>.md`                                                                  |
+| Neue Phase eröffnet                               | `ROADMAP.md` (Tabelle) + neue `ROADMAP_PHASE<N>.md` anlegen                                     |
+| Code-Review fand bewusst offen gelassene Befunde  | `CODE_REVIEW_OFFEN_<BEREICH>.md` anlegen / erweitern                                            |
+| Neue projektspezifische Coding-Konvention         | `CODING_RULES.md`                                                                               |
+| Bewusster Hack / temporäre Vereinfachung          | `TECH_SCHULDEN.md` (neuer Eintrag mit Risiko + Auflösungsplan)                                  |
+| Season abgeschlossen                              | `SEASON_LOG.md` (Retrospektiv-Eintrag oben anfügen)                                             |
+| Neuer Domain-Begriff / Abkürzung eingeführt       | `GLOSSAR.md`                                                                                    |
+| Setup-Schritt oder Abhängigkeit hat sich geändert | `DEV_SETUP.md`                                                                                  |
 
 ## Was explizit NICHT hier landet
 
@@ -49,4 +56,7 @@ Sie wird nicht automatisch vom Agenten geladen — sie ist für Menschen gedacht
 - **ARCHITEKTUR.md**: mittel. Bei jeder strukturellen Erweiterung (neues Modul, neue Tabelle).
 - **FEATURES.md / CHANGELOG.md / ROADMAP_PHASE\<N\>.md**: oft. Nach jeder abgeschlossenen Season.
 - **ENTSCHEIDUNGEN.md**: bei Bedarf. Wenn eine nicht-triviale Variante gewählt wurde.
+- **TECH_SCHULDEN.md**: bei Bedarf. Wenn ein bewusster Hack gemacht wurde.
+- **SEASON_LOG.md**: einmal pro Season. Am Ende, nach dem letzten Feature.
+- **GLOSSAR.md / DEV_SETUP.md**: selten. Nur wenn sich Begriffe oder Setup-Schritte ändern.
 - **Regeln (CODING / MARKDOWN)**: selten, nach harten Lernerfahrungen.
