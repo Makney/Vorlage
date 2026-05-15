@@ -29,8 +29,8 @@ When creating or editing a markdown file: work through these rules as a checklis
 
 ## 4. Code
 
-- Fenced code blocks with **language tag**: ` ```python `, ` ```sql `, ` ```bash `, ` ```ts `.
-- ASCII art / tree diagrams: fence without language tag is OK.
+- Fenced code blocks **always** with a language tag: ` ```python `, ` ```sql `, ` ```bash `, ` ```ts `.
+- ASCII art / tree diagrams / plain text examples: use ` ```text ` (kein leeres Fence — fängt MD040 sonst).
 - Inline code with backticks for: file names, paths, function names, classes, variables, CLI commands, column names.
 
 ## 5. Tables

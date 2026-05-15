@@ -24,7 +24,7 @@ Dieses Template wird verwendet, um einen Bug strukturiert an den Agenten zu meld
 
 ## Vorlage (Inhalt)
 
-```
+```text
 Bug: {{BUG_TITEL}}
 Datum: {{DATUM}} · Version: {{CURRENT_VERSION}}
 

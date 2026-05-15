@@ -42,7 +42,7 @@ Wichtig: Die Patch-Stelle zählt **nur** hoch, wenn auch wirklich released wird 
 
 ## Ablauf: vom DEV-Stand zum Release
 
-```
+```text
 DEV (main) ──► Code-Review der geänderten Dateien ──► Fixes ──► Release-Notes ──► Git-Tag ──► RELEASES.md / CLAUDE.md aktualisieren
 ```
 

@@ -20,6 +20,7 @@ Bei der Kopie alles ab der nächsten Trennlinie übernehmen — der erklärende 
 
 ---
 
+<!-- markdownlint-disable-next-line MD025 -- zweites H1 ist Template-Content, wird beim Kopieren zum H1 der neuen Release-Notes-Datei -->
 # {{PROJEKT_NAME}} v<MAJOR>.<MINOR>.<PATCH>
 
 - **Datum:** YYYY-MM-DD

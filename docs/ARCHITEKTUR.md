@@ -8,7 +8,7 @@ This file describes the **static structure** of the project: which modules exist
 
 ## Folder Structure
 
-```
+```text
 {{PROJEKT_NAME}}/
 ├── <entry point>               # e.g. main.py / index.ts / cmd/<name>/main.go
 ├── <dependency manifest>       # requirements.txt / package.json / Cargo.toml …
@@ -32,7 +32,7 @@ Layers are intentionally separated: *upper* imports from *lower*, never the reve
 
 ## Startup Data Flow
 
-```
+```text
 <Entry point>
   ├─ <step 1 — e.g. DB init>
   ├─ <step 2 — e.g. load config>
@@ -44,7 +44,7 @@ Layers are intentionally separated: *upper* imports from *lower*, never the reve
 
 Example placeholder — document a separate sequence for each important flow (import / request / render cycle …):
 
-```
+```text
 <Trigger>
   → <Action in layer 1>
   → <Action in layer 2>

@@ -105,7 +105,7 @@ Git repo: {{REPO_URL}}
 
 {{CURRENT_PHASE}} actively in development.
 
-```
+```text
 → [docs/roadmap/PHASE1.md](./docs/roadmap/PHASE1.md) — Open features of the current phase
 → [docs/FEATURES.md](./docs/FEATURES.md)             — Feature status matrix (✅/🟡/⛔)
 → [docs/CHANGELOG.md](./docs/CHANGELOG.md)           — Recently built features

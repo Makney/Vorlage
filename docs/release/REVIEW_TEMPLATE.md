@@ -35,7 +35,7 @@ Ein Release-Review läuft so:
 
 ## Template-Prompt (kopieren, anpassen)
 
-```
+```text
 # Release-Review: v<MAJOR>.<MINOR>.<PATCH>
 
 ## Kontext

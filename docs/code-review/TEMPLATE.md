@@ -17,7 +17,7 @@ Ein Review-Durchgang läuft so:
 
 ## Template-Prompt (kopieren, anpassen)
 
-```
+```text
 # Code-Review: <BEREICH>
 
 ## Kontext
