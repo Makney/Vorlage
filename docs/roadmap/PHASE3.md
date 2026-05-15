@@ -79,4 +79,4 @@ Features die externe Schnittstellen oder Dienste betreffen.
 
 ## Allgemeine Bugfixes & Performance
 
-Laufend, keine eigene Season nötig. Werden direkt behoben und im [CHANGELOG.md](./CHANGELOG.md) erfasst.
+Laufend, keine eigene Season nötig. Werden direkt behoben und im [CHANGELOG.md](../CHANGELOG.md) erfasst.

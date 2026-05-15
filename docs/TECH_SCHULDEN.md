@@ -15,7 +15,7 @@ Dieses Dokument hält **bewusst aufgeschobene oder vereinfachte Lösungen** fest
 - Fehlende Absicherung, die erst später nachgerüstet wird.
 - Performance-Problem, das im aktuellen Scope toleriert wird.
 
-**Nicht** hier rein: Feature-Wünsche (→ FEATURES.md), Design-Entscheidungen (→ ENTSCHEIDUNGEN.md), offene Bugs (→ CODE_REVIEW_OFFEN).
+**Nicht** hier rein: Feature-Wünsche (→ FEATURES.md), Design-Entscheidungen (→ ENTSCHEIDUNGEN.md), offene Bugs (→ `code-review/OFFEN_<BEREICH>.md`).
 
 ## Format pro Eintrag
 

@@ -151,5 +151,5 @@ Apply to every new interactive widget or component, regardless of stack:
 - No speculative configurability (→ Simplicity First).
 - No premature abstraction: only extract a helper when the second call site exists.
 - No prefix comment blocks like `# === SECTION === #` — code should speak through structure.
-- No `TODO:` comments without context. Either with reference to `CODE_REVIEW_OFFEN_<BEREICH>.md` or not at all.
+- No `TODO:` comments without context. Either with reference to `code-review/OFFEN_<BEREICH>.md` or not at all.
 - No performance optimizations without measurement.

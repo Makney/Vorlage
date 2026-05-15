@@ -4,7 +4,7 @@ This file describes the **static structure** of the project: which modules exist
 
 - **CLAUDE.md** → Project overview (1 paragraph), reference points here
 - **ENTSCHEIDUNGEN.md** → *why* the structure is the way it is (not here)
-- **FEATURES.md / ROADMAP.md** → what exists / will be built (not here)
+- **FEATURES.md / roadmap/ROADMAP.md** → what exists / will be built (not here)
 
 ## Folder Structure
 

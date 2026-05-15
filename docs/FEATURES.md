@@ -8,7 +8,7 @@ Legende:
 
 Nach jedem umgesetzten Feature wird der Eintrag hier auf ✅ gesetzt und in [CHANGELOG.md](./CHANGELOG.md) ein Eintrag angelegt.
 
-Alle offenen Features mit Details → [ROADMAP.md](./ROADMAP.md)
+Alle offenen Features mit Details → [roadmap/ROADMAP.md](./roadmap/ROADMAP.md)
 
 ---
 

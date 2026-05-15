@@ -4,7 +4,7 @@
 
 **Ziel:** Aus der funktionsfähigen Basis eine ausgereifte Anwendung machen. Externe Dienste anbinden, UI verfeinern, Programm für den täglichen Einsatz komfortabler gestalten.
 
-**Milestone:** Version 1.0
+**Milestone:** `v1.0.0` (Phasen-Milestone-Release, semver-Major-Bump, nach Release-Code-Review). Zwischen-Releases während Phase 2: `v0.1.1`, `v0.1.2`, … — jeweils gezielter Release-Review der Datei-Diffs gegenüber der vorherigen Version. Schema → [release/VERSIONIERUNG.md](../release/VERSIONIERUNG.md)
 
 ---
 
@@ -79,4 +79,4 @@ Kurze Beschreibung.
 
 ## Allgemeine Bugfixes & Performance
 
-Laufend, keine eigene Season nötig. Werden direkt behoben und im [CHANGELOG.md](./CHANGELOG.md) erfasst.
+Laufend, keine eigene Season nötig. Werden direkt behoben und im [CHANGELOG.md](../CHANGELOG.md) erfasst.

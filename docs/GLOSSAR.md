@@ -16,11 +16,11 @@ Domain-specific terms, abbreviations, and project-internal concepts. Read this f
 
 ### Season
 
-A single focused development session with one clearly scoped feature goal. Corresponds to one invocation of `SEASON_PROMPT_TEMPLATE.md`. Tracked retrospectively in `SEASON_LOG.md` and by result in `CHANGELOG.md`.
+A single focused development session with one clearly scoped feature goal. Corresponds to one invocation of `templates/SEASON_PROMPT.md`. Tracked retrospectively in `SEASON_LOG.md` and by result in `CHANGELOG.md`.
 
 ### Phase
 
-A group of seasons leading to a version milestone (v0.1, v1.0, …). Three phases are defined in `ROADMAP.md`; details per phase in `ROADMAP_PHASE<N>.md`.
+A group of seasons leading to a version milestone (v0.1, v1.0, …). Three phases are defined in `roadmap/ROADMAP.md`; details per phase in `roadmap/PHASE<N>.md`.
 
 ---
 

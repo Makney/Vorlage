@@ -4,7 +4,7 @@
 
 **Ziel:** {{PROJEKT_NAME}} in einen Zustand bringen, in dem der Haupt-Usecase funktioniert — auch wenn Features noch rau sind. Alles Weitere ist Phase 2.
 
-**Milestone:** Version 0.1
+**Milestone:** `v0.1.0` (Phasen-Milestone-Release, semver-Minor-Bump, nach Release-Code-Review). Keine Zwischen-Releases in Phase 1. Schema → [release/VERSIONIERUNG.md](../release/VERSIONIERUNG.md)
 
 ---
 
@@ -79,10 +79,10 @@ Kurze Beschreibung.
 
 ## Hinweise zum Phase-1-Scope
 
-- Alles, was nicht zwingend für die Lauffähigkeit gebraucht wird, gehört in [ROADMAP_PHASE2.md](./ROADMAP_PHASE2.md).
+- Alles, was nicht zwingend für die Lauffähigkeit gebraucht wird, gehört in [PHASE2.md](./PHASE2.md).
 - „Intelligente" Erweiterungen (Online-Anreicherung, Polish, Sortierungen, Themes) → Phase 2.
-- Ambitionierte Langfrist-Features (Mehrsprachigkeit, integrierter Reader, Release-Vorbereitung) → [ROADMAP_PHASE3.md](./ROADMAP_PHASE3.md).
+- Ambitionierte Langfrist-Features (Mehrsprachigkeit, integrierter Reader, Release-Vorbereitung) → [PHASE3.md](./PHASE3.md).
 
 ## Allgemeine Bugfixes & Performance
 
-Laufend, keine eigene Season nötig. Werden direkt behoben und im [CHANGELOG.md](./CHANGELOG.md) erfasst.
+Laufend, keine eigene Season nötig. Werden direkt behoben und im [CHANGELOG.md](../CHANGELOG.md) erfasst.

@@ -4,16 +4,16 @@ Bauplan für **wiederkehrende** Code-Reviews. Code-Reviews sind ein zweiter, gez
 
 ## Konzept
 
-Für jeden Review-**Bereich** (z.B. `DB`, `Core`, `UI`, `API`, …) gibt es genau eine `CODE_REVIEW_OFFEN_<BEREICH>.md`-Datei. Dort stehen Befunde, die **bekannt und bewusst offen** sind — damit spätere Review-Durchgänge nicht immer dieselben Punkte erneut melden.
+Für jeden Review-**Bereich** (z.B. `DB`, `Core`, `UI`, `API`, …) gibt es genau eine `code-review/OFFEN_<BEREICH>.md`-Datei. Dort stehen Befunde, die **bekannt und bewusst offen** sind — damit spätere Review-Durchgänge nicht immer dieselben Punkte erneut melden.
 
 Ein Review-Durchgang läuft so:
 
 1. **Bereich wählen** — z.B. „Datenbank-Schicht".
-2. **`CODE_REVIEW_OFFEN_<BEREICH>.md` anlegen oder öffnen** — siehe [CODE_REVIEW_OFFEN_TEMPLATE.md](./CODE_REVIEW_OFFEN_TEMPLATE.md).
+2. **`code-review/OFFEN_<BEREICH>.md` anlegen oder öffnen** — siehe [OFFEN_TEMPLATE.md](./OFFEN_TEMPLATE.md).
 3. **Review-Prompt bauen** (Template unten) und als Season-Prompt starten.
 4. **Befund-Report prüfen** — neue Befunde vs. bereits dokumentiert.
 5. **Fixes durchführen** (auf Signal „fix it").
-6. **Offen gebliebene neue Befunde** in die `CODE_REVIEW_OFFEN_<BEREICH>.md` eintragen.
+6. **Offen gebliebene neue Befunde** in die `code-review/OFFEN_<BEREICH>.md` eintragen.
 
 ## Template-Prompt (kopieren, anpassen)
 
@@ -23,7 +23,7 @@ Ein Review-Durchgang läuft so:
 ## Kontext
 CLAUDE.md ist auto-geladen (Projekt-Steckbrief, Regeln).
 
-**Vor dem Review zwingend lesen:** docs/CODE_REVIEW_OFFEN_<BEREICH>.md
+**Vor dem Review zwingend lesen:** docs/code-review/OFFEN_<BEREICH>.md
 Die dort gelisteten Punkte sind **bekannt und bewusst offen** – bitte
 nicht erneut melden, außer es gibt eine neue Erkenntnis dazu.
 
@@ -44,10 +44,10 @@ Führe einen Code-Review des <BEREICHS> durch.
 - <weitere bereichsspezifische Prüfpunkte, z.B. "SQL-Injection", "Thread-Safety", "Memory-Leaks", "unverbundene Signale">
 
 **Vorgehensweise:**
-1. Lies zuerst docs/CODE_REVIEW_OFFEN_<BEREICH>.md komplett
+1. Lies zuerst docs/code-review/OFFEN_<BEREICH>.md komplett
 2. Lies die oben genannten Dateien vollständig
 3. Erstelle einen Befund-Report: Kategorie (Bug / Warnung / Verbesserung)
-   + Abgrenzung "ist NEU gegenüber CODE_REVIEW_OFFEN_<BEREICH>.md"
+   + Abgrenzung "ist NEU gegenüber code-review/OFFEN_<BEREICH>.md"
 4. Warte auf mein "fix it" bevor du etwas änderst
 
 ## Hinweise

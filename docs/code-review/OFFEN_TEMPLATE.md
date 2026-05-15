@@ -2,11 +2,11 @@
 
 Diese Datei ist die **Vorlage**. Pro Review-Bereich wird eine Kopie mit sprechendem Namen angelegt, z.B.:
 
-- `CODE_REVIEW_OFFEN_DB.md`
-- `CODE_REVIEW_OFFEN_CORE.md`
-- `CODE_REVIEW_OFFEN_UI_SHELL.md`
-- `CODE_REVIEW_OFFEN_UI_DETAILS.md`
-- `CODE_REVIEW_OFFEN_API.md`
+- `OFFEN_DB.md`
+- `OFFEN_CORE.md`
+- `OFFEN_UI_SHELL.md`
+- `OFFEN_UI_DETAILS.md`
+- `OFFEN_API.md`
 
 ## Zweck
 
@@ -30,7 +30,7 @@ Befunde, die während eines Code-Reviews aufkommen, aber **bewusst nicht gefixt*
 - `core/scanner.py:142` · Kategorie: **Warnung**
 - **Beschreibung:** Wenn eine Datei auf der Platte umbenannt wird, legt der Scanner einen neuen Eintrag an und markiert den alten als `missing = 1`. Die alte Zeile wird nicht automatisch zur neuen umgeschrieben.
 - **Begründung:** Fuzzy-Matching für Umbenennungs-Erkennung ist eigenes Feature in Phase 2. Aktuell löst der Nutzer das über das Pill-Menü („Datei neu zuordnen").
-- **Trigger:** sobald das Feature „Umbenennungs-Erkennung" aus `ROADMAP_PHASE2.md` geplant wird — diesen Eintrag dann auflösen.
+- **Trigger:** sobald das Feature „Umbenennungs-Erkennung" aus `roadmap/PHASE2.md` geplant wird — diesen Eintrag dann auflösen.
 
 ---
 

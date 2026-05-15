@@ -9,9 +9,9 @@ When creating or editing a markdown file: work through these rules as a checklis
 
 ## 1. File Names
 
-- `SCREAMING_SNAKE_CASE.md` for documentation files (e.g. `FEATURES.md`, `ROADMAP_PHASE2.md`).
+- `SCREAMING_SNAKE_CASE.md` for documentation files (e.g. `FEATURES.md`, `roadmap/PHASE2.md`).
 - Exceptions: `README.md`, `CLAUDE.md` (convention).
-- Code review files: `CODE_REVIEW_OFFEN_<BEREICH>.md` – area instead of sequential number. Append sub-area with another `_` if needed.
+- Code review files: `code-review/OFFEN_<BEREICH>.md` – area instead of sequential number. Append sub-area with another `_` if needed.
 
 ## 2. Headings
 
@@ -79,17 +79,23 @@ When creating or editing a markdown file: work through these rules as a checklis
 ## 10. Links
 
 - Markdown syntax: `[Display text](./docs/FILE.md)`.
-- **Always relative** and **with `./` prefix** for internal documents:
-  - ✅ `[Features](./docs/FEATURES.md)`
-  - ⛔ `[Features](docs/FEATURES.md)`
-  - ⛔ `[Features](/docs/FEATURES.md)`
+- **Always relative**, never absolute paths:
+  - **Sibling or child** (same directory or below): with `./` prefix.
+    - ✅ `[Features](./docs/FEATURES.md)`
+    - ⛔ `[Features](docs/FEATURES.md)`
+    - ⛔ `[Features](/docs/FEATURES.md)`
+  - **Parent directory** (going up): `../` without leading `./`.
+    - ✅ `[CLAUDE.md](../CLAUDE.md)` from inside `docs/`
+    - ✅ `[CLAUDE.md](../../CLAUDE.md)` from inside `docs/release/`
 - External links: full URL `https://…`.
 - Code line references: `[file.ext:42](./module/file.ext)` (no line anchor – not rendered, but keep the convention).
 
 ## 11. Frontmatter
 
-- **No** YAML frontmatter (`---\n...\n---` at file start).
-- Metadata goes in flowing text or tables.
+- **No** YAML frontmatter (`---\n...\n---` at file start) for documentation files.
+- **Exception**: `CLAUDE.md` uses YAML frontmatter for tool configuration (TakumiDeck app reads `workbench:`-namespace). This is the only allowed frontmatter location.
+- **Exception**: `.claude/rules/*.md` files use YAML frontmatter for path-glob configuration (Claude Code internal).
+- Metadata in regular doc files goes in flowing text or tables.
 
 ## 12. Line Length
 
