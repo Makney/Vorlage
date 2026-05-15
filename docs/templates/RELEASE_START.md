@@ -30,7 +30,7 @@ Dieses Template startet einen **Release-Lauf** mit dem Sub-Agent-Pattern. Takumi
 
 ## Vorlage (Inhalt)
 
-```
+```text
 Release-Lauf — {{PROJEKT_NAME}} v{{ZIEL_VERSION}}
 Datum: {{DATUM}} · aktueller Stand: v{{CURRENT_VERSION}} · Vorgänger: v{{VORHERIGE_VERSION}} · Typ: {{RELEASE_TYP}}
 

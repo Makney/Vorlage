@@ -27,7 +27,7 @@ Dieses Template startet einen **Code-Review-Lauf** mit dem Sub-Agent-Pattern. Ta
 
 ## Vorlage (Inhalt)
 
-```
+```text
 Code-Review-Lauf — {{DATUM}}
 Bereiche: {{BEREICHE}}
 

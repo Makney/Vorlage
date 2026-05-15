@@ -25,7 +25,7 @@ Dieses Template wird beim Erstellen einer neuen Season-Session verwendet. Takumi
 
 ## Vorlage (Inhalt)
 
-```
+```text
 Season {{NEXT_SEASON_NR}}: {{FEATURE_NAME}}
 Einstieg: Diese Dateien zuerst lesen
 

@@ -19,7 +19,7 @@ Fehlt einer dieser Bausteine: **vor Beginn der Phasen unten nachfragen**, nicht 
 
 ## Vorlage (Inhalt)
 
-```
+```text
 Projekt-Kickoff — Vorlage → arbeitsbereites Projekt
 
 Du bist der Orchestrator. Du schreibst KEINEN Code in diesem Lauf.

@@ -6,7 +6,7 @@ Ziel: Ein frisches Projekt soll vom ersten Commit an eine konsistente Kommunikat
 
 ## Struktur
 
-```
+```text
 .
 ├── CLAUDE.md                       — Auto-geladener Agent-Kontext, YAML-Frontmatter mit workbench-Config
 ├── CLAUDE.local.md                 — Lokale Overrides (in abgeleiteten Projekten nicht committed)
