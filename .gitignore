@@ -45,3 +45,6 @@ temp/
 
 # Persönliche Claude-Overrides
 CLAUDE.local.md
+
+# Lokale Recherche / Drafts (nicht versioniert)
+_Research/
