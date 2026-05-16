@@ -23,7 +23,7 @@ Dieses Template startet einen **Release-Lauf** mit dem Sub-Agent-Pattern. Takumi
 
 - `{{ZIEL_VERSION}}` — Pflicht, neue Version (z.B. `0.1.1`, `1.0.0`)
 - `{{VORHERIGE_VERSION}}` — Pflicht, Vorgänger-Tag ohne `v`-Prefix (z.B. `0.1.0`)
-- `{{RELEASE_TYP}}` — Pflicht, einer von `Patch` / `Minor` / `Phasen-Milestone` / `Hotfix`
+- `{{RELEASE_TYP}}` — Pflicht, einer von `Patch` / `Minor` / `Major` / `Hotfix` (Major = Phasen-Milestone oder, ab 1.0, Breaking Change; Schema-Definition → [docs/release/VERSIONIERUNG.md](../release/VERSIONIERUNG.md))
 - `{{HINWEISE}}` — Optional, z.B. „nur Doku-Patch", „bekannte Auflage X bleibt offen"
 
 ---
@@ -94,6 +94,10 @@ Phase 4 — Release-Artefakte (auf mein „{{RELEASE_ARTIFACTS_TRIGGER}}"-Signal
     Fülle: Datum, Typ, Phase, Vorgänger, Was jetzt geht, Enthaltene Features,
     Code-Review-Ergebnis (Zahlen aus Phase 2/3), Bekannte Einschränkungen,
     Upgrade-Hinweise, Architektur-Entscheidungen.
+    Bei Pre-1.0-Releases mit Breaking Changes (MAJOR=0 UND nicht abwärtskompatibel):
+    den `⚠ Breaking`-Banner über dem H1 stehen lassen und einen Satz zur Auswirkung
+    eintragen. Andernfalls: Banner samt HTML-Kommentar entfernen. Schema-Hintergrund
+    → docs/release/VERSIONIERUNG.md, Abschnitt „Breaking Changes vor 1.0.0".
 12. Aktualisiere docs/release/RELEASES.md (neue Tabellen-Zeile oben).
 13. Aktualisiere CLAUDE.md frontmatter:  workbench.current_version: "{{ZIEL_VERSION}}"
 14. Ergänze in docs/CHANGELOG.md den Header über dem zugehörigen Eintrag um den

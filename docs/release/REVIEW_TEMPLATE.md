@@ -67,6 +67,7 @@ Führe einen Release-Review für v<MAJOR>.<MINOR>.<PATCH> durch.
 4. **Fehlendes Error-Handling** in neu hinzugekommenen Code-Pfaden.
 5. **Stil-Abweichungen** vom restlichen Code (CODING_RULES.md).
 6. **Doku-Synchronität** — sind neue Features in FEATURES.md / CHANGELOG.md eingetragen?
+7. **Breaking Changes erkannt?** — Verhaltens-, API- oder Schema-Änderungen mit Nutzer-Auswirkung. Falls ja UND Pre-1.0 (`MAJOR=0`): muss als `⚠ Breaking`-Banner in den Release-Notes erscheinen (siehe docs/release/VERSIONIERUNG.md, Abschnitt „Breaking Changes vor 1.0.0"). Falls ja UND ab 1.0: zwingt einen Major-Sprung, auch innerhalb einer Phase.
 
 **Vorgehensweise:**
 1. Lies zuerst docs/release/VERSIONIERUNG.md

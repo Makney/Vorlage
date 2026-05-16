@@ -20,11 +20,11 @@ Diese Datei ist die Quelle der Wahrheit für das Schema. Die *Liste* aller Relea
 
 ## Schema: `MAJOR.MINOR.PATCH`
 
-| Stelle  | Wann sie hochzählt                                                                                     | Beispiel             |
-| ------- | ------------------------------------------------------------------------------------------------------ | -------------------- |
-| `MAJOR` | Phasenwechsel mit grundlegend neuem Funktionsumfang (Roadmap-Phase abgeschlossen, nächste startet)     | `0.x.x → 1.0.0`      |
-| `MINOR` | Phasen-Milestone erreicht (erster lauffähiger Stand einer neuen Phase, größerer Feature-Block fertig)  | `0.1.x → 0.2.0`      |
-| `PATCH` | Zwischen-Release innerhalb einer Phase — stabiler DEV-Stand wird in Produktion gebracht                | `0.1.0 → 0.1.1`      |
+| Stelle | Wann sie hochzählt | Beispiel |
+| ------ | ------------------ | -------- |
+| `MAJOR` | **Phasenwechsel der Roadmap.** Eine Phase ist abgeschlossen, die nächste startet mit qualitativ neuem Funktionsumfang. Vor `1.0.0` ist das der einzige Auslöser; ab `1.0.0` zusätzlich jeder Breaking Change (siehe unten). | `0.x.x → 1.0.0` |
+| `MINOR` | **Ein vom Nutzer wahrnehmbares Feature.** Neues sichtbares Verhalten, neuer Befehl, neues Template, neue Doku-Sektion mit eigener Funktion. Reine Bugfixes oder interne Umbauten zählen nicht. *Faustregel:* würde dieser Release einen eigenen „Neu"-Eintrag in `CHANGELOG.md` rechtfertigen? Dann Minor. | `0.1.x → 0.2.0` |
+| `PATCH` | **Reparatur, Politur, internes Aufräumen.** Bugfix an bestehendem Feature, Doku-Korrektur, CI-/Tooling-Update, Refactoring ohne sichtbares Verhalten. *Faustregel:* wenn der Nutzer es nur merkt, weil vorher Kaputtes jetzt geht — Patch. | `0.1.0 → 0.1.1` |
 
 ### Zuordnung zu Roadmap-Phasen
 
@@ -37,6 +37,12 @@ Standard-Zuordnung der Vorlage. Pro Projekt anpassbar — Schema bleibt gleich.
 | [Phase 3](../roadmap/PHASE3.md)              | offen                       | `1.0.1`, `1.0.2`, …                 |
 
 Wichtig: Die Patch-Stelle zählt **nur** hoch, wenn auch wirklich released wird — nicht bei jedem in DEV hinzugefügten Feature. Ein Patch-Release bündelt typischerweise mehrere DEV-Features, die zusammen einen stabilen Funktionsblock ergeben.
+
+### Breaking Changes vor 1.0.0
+
+Solange `MAJOR=0`, dürfen Minor-Sprünge brechen (klassischer SemVer-Pre-1.0). Voraussetzung: jeder Breaking Change steht in den Release-Notes im Header mit dem Tag `⚠ Breaking`. Damit ist es ehrlich kommuniziert, ohne den Major künstlich hochzudrehen.
+
+Ab `1.0.0` gilt strenges SemVer — Breaking Changes erzwingen dann einen Major-Sprung, auch innerhalb einer Phase.
 
 ---
 

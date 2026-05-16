@@ -6,7 +6,8 @@ Bei der Kopie alles ab der nächsten Trennlinie übernehmen — der erklärende 
 
 ## Was reingehört
 
-- **Versions-Header** mit Datum, Typ (Phasen-Milestone / Minor / Patch / Hotfix), zugehöriger Phase.
+- **Versions-Header** mit Datum, Typ (Major / Minor / Patch / Hotfix), zugehöriger Phase. Schema-Definition → [VERSIONIERUNG.md](./VERSIONIERUNG.md).
+- **Pre-1.0-Breaking-Banner** — bei Pre-1.0-Releases mit nicht abwärtskompatiblen Änderungen erscheint ein `⚠ Breaking`-Banner direkt über dem H1 (siehe Beispiel unten). Pflicht laut [VERSIONIERUNG.md → Breaking Changes vor 1.0.0](./VERSIONIERUNG.md#breaking-changes-vor-100).
 - **Was jetzt geht** — Nutzer-Mehrwert (analog [CHANGELOG.md](../CHANGELOG.md), aber für **alle** Features des Release-Bündels, nicht nur das letzte).
 - **Code-Review-Ergebnis** — Befund-Zahlen + Verweis auf gefixte Punkte und auf bewusst offen Gelassene.
 - **Bekannte Einschränkungen** — was im Release fehlt oder unrund ist.
@@ -20,11 +21,14 @@ Bei der Kopie alles ab der nächsten Trennlinie übernehmen — der erklärende 
 
 ---
 
+<!-- Optional: Pre-1.0-Breaking-Banner. Nur stehen lassen, wenn MAJOR=0 UND nicht abwärtskompatible Änderungen enthalten sind. Sonst Banner und HTML-Kommentar komplett entfernen. -->
+> ⚠ **Breaking** — kurze Zusammenfassung des Bruchs in einem Satz. Details siehe „Upgrade-Hinweise".
+
 <!-- markdownlint-disable-next-line MD025 -- zweites H1 ist Template-Content, wird beim Kopieren zum H1 der neuen Release-Notes-Datei -->
 # {{PROJEKT_NAME}} v<MAJOR>.<MINOR>.<PATCH>
 
 - **Datum:** YYYY-MM-DD
-- **Typ:** Phasen-Milestone / Minor / Patch / Hotfix
+- **Typ:** Major / Minor / Patch / Hotfix *(Major = Phasen-Milestone oder, ab 1.0, jeder Breaking Change)*
 - **Phase:** Phase <N> ([→ Roadmap](../roadmap/PHASE<N>.md))
 - **Vorgänger:** v<vorherige-version> *(oder „—" bei erstem Release)*
 - **Git-Tag:** `v<MAJOR>.<MINOR>.<PATCH>`
@@ -65,7 +69,7 @@ Release-Review nach [REVIEW_TEMPLATE.md](./REVIEW_TEMPLATE.md), durchgeführt am
 
 - **DB-Migration nötig:** ja / nein. Falls ja: Migrations-Schritt beschreiben.
 - **Setup-Änderungen:** ja / nein. Falls ja: Verweis auf [DEV_SETUP.md](../DEV_SETUP.md).
-- **Breaking Changes:** ja / nein. Falls ja: was muss der Nutzer manuell anpassen.
+- **Breaking Changes:** ja / nein. Falls ja: was muss der Nutzer manuell anpassen. Pre-1.0-Breaking (`MAJOR=0`) erfordert zusätzlich den `⚠ Breaking`-Banner über dem H1 (siehe [VERSIONIERUNG.md](./VERSIONIERUNG.md#breaking-changes-vor-100)).
 
 ## Architektur-Entscheidungen dieses Releases
 
