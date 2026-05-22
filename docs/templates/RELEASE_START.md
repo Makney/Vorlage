@@ -1,3 +1,17 @@
+---
+variables:
+  PROJEKT_NAME:              { auto: project.name }
+  DATUM:                     { auto: today }
+  CURRENT_VERSION:           { auto: claude_md.workbench.current_version }
+  FIX_TRIGGER:               { auto: claude_md.workbench.trigger_phrases.fix }
+  RELEASE_ARTIFACTS_TRIGGER: { auto: claude_md.workbench.trigger_phrases.release_artifacts }
+  TAG_PUSH_TRIGGER:          { auto: claude_md.workbench.trigger_phrases.tag_push }
+  ZIEL_VERSION:              { input: text,     label: "Ziel-Version (z.B. 0.1.1)",          required: true }
+  VORHERIGE_VERSION:         { input: text,     label: "Vorherige Version (Tag ohne v-Prefix)", required: true }
+  RELEASE_TYP:               { input: text,     label: "Typ (Patch / Minor / Major / Hotfix)", required: true }
+  HINWEISE:                  { input: textarea, label: "Hinweise für diesen Release (optional)" }
+---
+
 # Release-Start-Template
 
 Dieses Template startet einen **Release-Lauf** mit dem Sub-Agent-Pattern. TakumiDeck (App) liest es, befüllt die `{{...}}`-Variablen und sendet das Ergebnis ans aktive PTY via Bracketed Paste.

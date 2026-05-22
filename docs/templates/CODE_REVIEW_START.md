@@ -1,3 +1,14 @@
+---
+variables:
+  PROJEKT_NAME:         { auto: project.name }
+  DATUM:                { auto: today }
+  FIX_TRIGGER:          { auto: claude_md.workbench.trigger_phrases.fix }
+  BEREICHE:             { input: text,     label: "Bereiche (kommagetrennt, z.B. DB,Core,UI_SHELL)", required: true }
+  DATEIEN_PRO_BEREICH:  { input: textarea, label: "Dateien pro Bereich (Format siehe Vorlage)",       required: true }
+  FOKUS:                { input: textarea, label: "Zusätzliche Prüfschwerpunkte (optional)" }
+  HINWEISE:             { input: textarea, label: "Hinweise für diesen Lauf (optional)" }
+---
+
 # Code-Review-Start-Template
 
 Dieses Template startet einen **Code-Review-Lauf** mit dem Sub-Agent-Pattern. TakumiDeck (App) liest es, befüllt die `{{...}}`-Variablen und sendet das Ergebnis ans aktive PTY via Bracketed Paste.

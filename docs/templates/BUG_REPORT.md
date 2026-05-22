@@ -1,3 +1,19 @@
+---
+variables:
+  PROJEKT_NAME:        { auto: project.name }
+  DATUM:               { auto: today }
+  CURRENT_PHASE_FILE:  { auto: claude_md.workbench.current_phase_file }
+  CURRENT_VERSION:     { auto: claude_md.workbench.current_version }
+  FIX_TRIGGER:         { auto: claude_md.workbench.trigger_phrases.fix }
+  BUG_TITEL:           { input: text,     label: "Bug-Titel",                  required: true }
+  SYMPTOM:             { input: textarea, label: "Symptom",                    required: true }
+  REPRODUKTION:        { input: textarea, label: "Reproduktion (Schritte)",    required: true }
+  ERWARTET:            { input: textarea, label: "Erwartetes Verhalten",       required: true }
+  BETROFFENE_DATEIEN:  { input: textarea, label: "Verdachtsbereich (optional)" }
+  UMGEBUNG:            { input: text,     label: "Umgebung (optional)" }
+  ZUSATZINFO:          { input: textarea, label: "Zusatzinfo (optional)" }
+---
+
 # Bug-Report-Template
 
 Dieses Template wird verwendet, um einen Bug strukturiert an den Agenten zu melden. TakumiDeck (App) liest es, befüllt die `{{...}}`-Variablen automatisch + via Formular und sendet das Ergebnis ans aktive PTY via Bracketed Paste.
