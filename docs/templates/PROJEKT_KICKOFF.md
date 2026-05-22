@@ -1,3 +1,12 @@
+---
+# Kickoff-Template hat KEINE Auto- oder Input-Variablen aus TakumiDeck-Sicht.
+# Alle {{...}}-Tokens im Body (KURZBESCHREIBUNG, STACK, AGENT_ROLLE, TRIGGER_*, …)
+# sind Agent-Anweisungen — der Agent extrahiert die Werte aus dem Brainstorm-
+# Input und ersetzt sie zur Laufzeit selbst. TakumiDeck laesst alle Tokens
+# literal stehen (leeres `variables:`-Map = kein Token ist Renderer-bekannt).
+variables: {}
+---
+
 # Projekt-Kickoff-Template
 
 Dieses Template startet einen **Kickoff-Lauf**: aus dem rohen Klon dieser Vorlage und einem Kickoff-Prompt (Ergebnis einer langen Brainstorm-Season in einer anderen Session/Tool) entsteht ein arbeitsbereites Projekt.
@@ -37,6 +46,7 @@ Pflicht-Lektüre vor dem Start
 - CLAUDE.md                       (YAML-Frontmatter + Working Rules — beides muss konsistent gefüllt werden)
 - docs/README.md                  (Doku-Index — Pflegerhythmus, wer schreibt was)
 - docs/MARKDOWN_RULES.md          (gilt für jede .md-Bearbeitung in diesem Lauf)
+- docs/COMMANDS.md                (Skelett — Befehlsreferenz, wird in Phase 2 mit projektspezifischen Befehlen gefüllt)
 - docs/{{PROJEKT_NAME}}_ARCHITEKTUR.md (Skelett, das gefüllt wird)
 - docs/roadmap/ROADMAP.md         (Phasen-Übersicht — Skelett, das gefüllt wird)
 - docs/roadmap/PHASE1.md          (Skelett — Skelette aller existierenden Phase-Dateien lesen, bevor du etwas schreibst)
@@ -64,17 +74,32 @@ Phase 1 — Inputs extrahieren und Lücken melden
    - FIX_TRIGGER = "fix it"
    - RELEASE_ARTIFACTS_TRIGGER = "release artefakte"
    - TAG_PUSH_TRIGGER = "tag und push"
-4. Extrahiere die Architektur-Bausteine (Stack-Detail, Prozesse, Persistenz,
+4. Leite aus dem Stack die typischen Projekt-Befehle ab und schlag sie als
+   Default-Tabelle vor (Beispiele: Node-npm → "npm install / npm run dev /
+   npm run build / npm test / npm run lint"; Python-Poetry → "poetry install /
+   poetry run <skript> / pytest / ruff check"; Cargo → "cargo build /
+   cargo run / cargo test / cargo clippy"). Wenn der Brainstorm bereits
+   konkrete Befehle nennt: die übernehmen. Werte, die mit Stack-Wissen nicht
+   eindeutig ableitbar sind: in der Bestätigungs-Tabelle als "*(noch offen)*"
+   markieren — nicht raten. Erwartete Tokens:
+   - PRIMARY (Entwicklungsplattform, z.B. "Windows 11")
+   - PRIMARY_SHELL (Default-Shell, z.B. "PowerShell 7+")
+   - INSTALL_BEFEHL, START_BEFEHL, LOKALE_URL
+   - BUILD_BEFEHL
+   - TEST_ALL_BEFEHL, TEST_ONE_BEFEHL, TEST_WATCH_BEFEHL
+   - LINT_BEFEHL, FORMAT_BEFEHL, TYPECHECK_BEFEHL
+   - CLEAN_BEFEHL, CLEAN_INSTALL
+5. Extrahiere die Architektur-Bausteine (Stack-Detail, Prozesse, Persistenz,
    Module, Lifecycle, Designprinzipien, bewusste Auslassungen, offene Fragen).
    Halte sie kurz strukturiert fest — die landen in Phase 4.
-5. Extrahiere den Phasen-Plan (Phase 1/2/3 — welche Features pro Phase, welche
+6. Extrahiere den Phasen-Plan (Phase 1/2/3 — welche Features pro Phase, welche
    sind bewusst nicht im Scope). Falls eine Phase nicht gebraucht wird:
    merken, sie wird in Phase 5 gelöscht.
-6. Berichte mir das extrahierte Wertepaket als Tabelle/Liste. Frag um Bestätigung,
+7. Berichte mir das extrahierte Wertepaket als Tabelle/Liste. Frag um Bestätigung,
    BEVOR du etwas schreibst.
 
 Phase 2 — Tokens global ersetzen (nach meinem OK)
-7. Ersetze die Tokens in allen .md-Dateien des Repos. Liste der Tokens und ihrer
+8. Ersetze die Tokens in allen .md-Dateien des Repos. Liste der Tokens und ihrer
    Zielwerte siehst du in der Tabelle aus Phase 1 sowie in README.md
    ("Platzhalter-Liste"):
    - {{PROJEKT_NAME}} → <Wert>
@@ -88,60 +113,71 @@ Phase 2 — Tokens global ersetzen (nach meinem OK)
    - {{DEFAULT_MODEL}} → <Wert>
    - {{DOCS_TRIGGER}}, {{COMMIT_TRIGGER}}, {{RELEASE_TRIGGER}},
      {{FIX_TRIGGER}}, {{RELEASE_ARTIFACTS_TRIGGER}}, {{TAG_PUSH_TRIGGER}} → <Werte>
+   - {{PRIMARY}}, {{PRIMARY_SHELL}} → <Werte aus Phase 1, Punkt 4>
+   - {{INSTALL_BEFEHL}}, {{START_BEFEHL}}, {{LOKALE_URL}}, {{BUILD_BEFEHL}},
+     {{TEST_ALL_BEFEHL}}, {{TEST_ONE_BEFEHL}}, {{TEST_WATCH_BEFEHL}},
+     {{LINT_BEFEHL}}, {{FORMAT_BEFEHL}}, {{TYPECHECK_BEFEHL}},
+     {{CLEAN_BEFEHL}}, {{CLEAN_INSTALL}} → <Werte aus Phase 1, Punkt 4>
    - {{DATUM}} → heute (YYYY-MM-DD), nur im Architektur-Skelett
    {{CURRENT_VERSION}} bleibt vorerst "0.0.0-dev" in CLAUDE.md frontmatter — wird
    vom Release-Flow gepflegt, nicht hier.
-8. Sonderfall TEMPLATE-Tokens NICHT ersetzen: in den Template-Dateien
+   Hinweis: docs/COMMANDS.md und docs/DEV_SETUP.md teilen sich die Befehls-Tokens
+   ({{INSTALL_BEFEHL}}, {{START_BEFEHL}}, {{LOKALE_URL}}) — derselbe Wert füllt
+   beide Dateien.
+9. Sonderfall TEMPLATE-Tokens NICHT ersetzen: in den Template-Dateien
    (docs/templates/*.md inkl. dieser Datei) sind {{...}}-Tokens dokumentierter
    Bestandteil der Vorlage (TakumiDeck befüllt sie zur Laufzeit). Diese Dateien
    bleiben unverändert. Ausnahme: docs/templates/SEASON_PROMPT.md,
    BUG_REPORT.md, CODE_REVIEW_START.md, RELEASE_START.md sind reine Templates
    und kommen nicht in den globalen Replace.
-9. Sonderfall .claude/rules/*.md — bleibt unverändert (sind Auto-Inject-Regeln,
-   keine projekt-spezifischen Inhalte).
-10. Liste mir nach dem Replace auf: welche Dateien wurden angefasst, wie viele
+10. Sonderfall .claude/rules/*.md — bleibt unverändert (sind Auto-Inject-Regeln,
+    keine projekt-spezifischen Inhalte).
+11. Liste mir nach dem Replace auf: welche Dateien wurden angefasst, wie viele
     Treffer pro Datei.
 
 Phase 3 — Architektur-Datei umbenennen
-11. Benenne die Datei docs/{{PROJEKT_NAME}}_ARCHITEKTUR.md so um, dass der Token
+12. Benenne die Datei docs/{{PROJEKT_NAME}}_ARCHITEKTUR.md so um, dass der Token
     im Dateinamen durch den realen Projektnamen ersetzt ist (z.B.
     docs/TakumiDeck_ARCHITEKTUR.md).
-12. Prüfe alle .md-Dateien auf Verweise auf den alten Dateinamen und korrigiere
+13. Prüfe alle .md-Dateien auf Verweise auf den alten Dateinamen und korrigiere
     sie. Typische Stellen: CLAUDE.md (frontmatter on_demand_files + Current-Status-
     Block), docs/README.md (Orientierungs-Reihenfolge), README.md.
 
 Phase 4 — Architektur-Skelett befüllen
-13. Fülle docs/<PROJEKT_NAME>_ARCHITEKTUR.md mit den Inhalten aus dem Brainstorm.
+14. Fülle docs/<PROJEKT_NAME>_ARCHITEKTUR.md mit den Inhalten aus dem Brainstorm.
     Halte dich an die existierende Sektions-Reihenfolge (1. Projekt-Identität …
     13. Offene Fragen). Schreibe nur, was der Brainstorm hergibt — leere Sektionen
     bleiben mit Platzhalter-Hinweis (*(noch offen)*) stehen statt erfundener
     Inhalte.
-14. Setze "Stand: <heute>" und "Status: Architektur in Arbeit" am Dateikopf.
+15. Setze "Stand: <heute>" und "Status: Architektur in Arbeit" am Dateikopf.
 
 Phase 5 — Roadmap-Skelette füllen oder löschen
-15. docs/roadmap/ROADMAP.md: Phasen-Übersicht aus dem Brainstorm einsetzen
+16. docs/roadmap/ROADMAP.md: Phasen-Übersicht aus dem Brainstorm einsetzen
     (Phase 1/2/3 — Titel + Ein-Satz-Ziel).
-16. docs/roadmap/PHASE1.md (und PHASE2.md / PHASE3.md, sofern verwendet):
+17. docs/roadmap/PHASE1.md (und PHASE2.md / PHASE3.md, sofern verwendet):
     Features als ⛔-Liste eintragen, gruppiert wie im Brainstorm. KEINE Features
     auf ✅ setzen — der Kickoff ist Vor-Implementierung.
-17. Wenn der Brainstorm nur Phase 1 oder 1+2 vorsieht: die ungenutzten Phasen-
+18. Wenn der Brainstorm nur Phase 1 oder 1+2 vorsieht: die ungenutzten Phasen-
     Dateien LÖSCHEN und alle Verweise (CLAUDE.md on_demand_files, docs/README.md,
     docs/templates/SEASON_PROMPT.md "Welche Roadmap-Datei?"-Tabelle) entsprechend
     kürzen. Frag mich vorher zur Bestätigung.
 
 Phase 6 — Status-Dateien initialisieren
-18. docs/FEATURES.md: Feature-Matrix mit allen Phase-1/2/3-Einträgen als ⛔
+19. docs/FEATURES.md: Feature-Matrix mit allen Phase-1/2/3-Einträgen als ⛔
     (nichts ist gebaut). Schema siehe existierende Tabellen-Struktur.
-19. docs/CHANGELOG.md: erster Eintrag oben "## <heute> — Projekt-Kickoff",
+20. docs/CHANGELOG.md: erster Eintrag oben "## <heute> — Projekt-Kickoff",
     eine Zeile pro großem Architektur-Baustein, der schriftlich festgehalten
     wurde. Kein Code, kein Feature ist fertig — der Eintrag dokumentiert nur
     den Übergang Brainstorm → Repo.
-20. docs/ENTSCHEIDUNGEN.md, docs/TECH_SCHULDEN.md, docs/SEASON_LOG.md,
+21. docs/ENTSCHEIDUNGEN.md, docs/TECH_SCHULDEN.md, docs/SEASON_LOG.md,
     docs/GLOSSAR.md, docs/DEV_SETUP.md: prüfen, ob die Skelette leer/sauber sind.
-    Nicht spekulativ füllen — bleiben bis zur ersten Season leer.
+    Nicht spekulativ füllen — bleiben bis zur ersten Season leer. Gleiches gilt
+    für die zwei unteren Tabellen in docs/COMMANDS.md ("Verifiziert
+    funktionierende Befehle" und "Bekannt nicht funktionierende Befehle") — die
+    werden im laufenden Betrieb gefüllt, nicht beim Kickoff.
 
 Phase 7 — README anpassen
-21. README.md (Root): Falls der User mir nicht ausdrücklich sagt, sie als
+22. README.md (Root): Falls der User mir nicht ausdrücklich sagt, sie als
     Vorlage-Doku zu behalten — ersetze den Inhalt durch eine projekt-spezifische
     Kurzfassung: <PROJEKT_NAME>, <KURZBESCHREIBUNG>, Stack-Zeile, Verweis auf
     docs/<PROJEKT_NAME>_ARCHITEKTUR.md und docs/roadmap/. Die Platzhalter-Tabelle
@@ -149,28 +185,28 @@ Phase 7 — README anpassen
     und sollen weg. Frag vor dem Überschreiben einmal nach.
 
 Phase 8 — Git und lokale Overrides
-22. Prüfe, ob das Repo bereits auf den finalen Remote zeigt (`git remote -v`).
+23. Prüfe, ob das Repo bereits auf den finalen Remote zeigt (`git remote -v`).
     Wenn nicht / wenn die Vorlage-Origin noch dranhängt: sag es mir, nimm aber
     KEINE Remote-Änderung selbst vor.
-23. CLAUDE.local.md: Skelett bleibt im Vorlage-Repo committed, im abgeleiteten
+24. CLAUDE.local.md: Skelett bleibt im Vorlage-Repo committed, im abgeleiteten
     Projekt NICHT. Prüfe, ob .gitignore in diesem Repo CLAUDE.local.md
     ausschließt. Falls nicht: Eintrag vorschlagen, nicht selbst hinzufügen
     (`/* CLAUDE.local.md */` — eine Zeile, ich entscheide).
-24. KEINE git-Operationen jenseits read-only (status, diff, log) ohne explizites
+25. KEINE git-Operationen jenseits read-only (status, diff, log) ohne explizites
     Signal. Keinen Initial-Commit setzen — das macht der User mit der konfigurierten
     Commit-Trigger-Phrase (siehe Phase 9).
 
 Phase 9 — Verifikation und Übergabe
-25. Suche das ganze Repo nach übrig gebliebenen {{...}}-Tokens, die du laut
+26. Suche das ganze Repo nach übrig gebliebenen {{...}}-Tokens, die du laut
     Phase-2-Sonderfällen NICHT bewusst stehen gelassen hast. Wenn welche
     auftauchen: liste sie auf, ich entscheide.
-26. Berichte den End-Zustand:
+27. Berichte den End-Zustand:
     - geänderte Dateien (gruppiert: umbenannt / inhaltlich gefüllt / Tokens
       ersetzt / gelöscht)
     - offene Fragen aus Phase 4 (Architektur-Sektion 13)
     - empfohlene erste Season (kurzer Vorschlag aus PHASE1.md — der User
       bestätigt vor dem nächsten Schritt)
-27. Erinnere mich an die nächsten Aktionen, die NUR ich auslöse:
+28. Erinnere mich an die nächsten Aktionen, die NUR ich auslöse:
     - Initial-Commit per Commit-Trigger-Phrase (siehe CLAUDE.md
       workbench.trigger_phrases.commit, gerade gesetzt in Phase 1).
     - Erste Feature-Season per SEASON_PROMPT.md.
@@ -185,6 +221,8 @@ Was du NICHT tust
 - Keine .claude/rules/-Dateien anfassen.
 - Keine bewussten Skelett-Bereiche der Vorlage (FEATURES.md, ENTSCHEIDUNGEN.md
   etc.) inhaltlich vor-befüllen.
+- Keine Werte in den unteren Tabellen von docs/COMMANDS.md eintragen — die
+  füllt der laufende Betrieb.
 ```
 
 ---

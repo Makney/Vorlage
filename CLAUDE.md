@@ -21,6 +21,9 @@ workbench:
     - path: docs/release/REVIEW_TEMPLATE.md
       trigger: "Read when preparing a release code-review across all files changed since the last version"
       auto_inject: false
+    - path: docs/COMMANDS.md
+      trigger: "Read before running any shell command — verified syntax + project-specific commands"
+      auto_inject: true
     - path: docs/CODING_RULES.md
       trigger: "Read for every implementation or refactoring task"
       auto_inject: false

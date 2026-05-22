@@ -79,8 +79,22 @@ Ziel: Ein frisches Projekt soll vom ersten Commit an eine konsistente Kommunikat
 | `{{TAG_PUSH_TRIGGER}}`       | Trigger-Phrase für Git-Tag + Push (Gate 4)                           | `tag und push`                                                |
 | `{{CURRENT_VERSION}}`        | Aktuelle Release-Version (im Frontmatter `workbench.current_version`, wird vom Release-Flow gepflegt) | `0.1.0`                            |
 | `{{DATUM}}`                  | Stand-Datum im Architektur-Skelett                                   | `2026-05-15`                                                  |
+| `{{PRIMARY}}`                | Entwicklungsplattform                                                | `Windows 11`                                                  |
+| `{{PRIMARY_SHELL}}`          | Default-Shell für Befehle                                            | `PowerShell 7+`                                               |
+| `{{INSTALL_BEFEHL}}`         | Abhängigkeiten installieren                                          | `npm install`                                                 |
+| `{{START_BEFEHL}}`           | Dev-Server / App starten                                             | `npm run dev`                                                 |
+| `{{LOKALE_URL}}`             | Lokale Aufruf-URL nach Start                                         | `http://localhost:5173`                                       |
+| `{{BUILD_BEFEHL}}`           | Produktions-Build erzeugen                                           | `npm run build`                                               |
+| `{{TEST_ALL_BEFEHL}}`        | Alle Tests ausführen                                                 | `npm test`                                                    |
+| `{{TEST_ONE_BEFEHL}}`        | Einzelnen Test ausführen                                             | `npm test -- path/to/test`                                    |
+| `{{TEST_WATCH_BEFEHL}}`      | Tests im Watch-Modus                                                 | `npm run test:watch`                                          |
+| `{{LINT_BEFEHL}}`            | Lint-Check                                                           | `npm run lint`                                                |
+| `{{FORMAT_BEFEHL}}`          | Auto-Format                                                          | `npm run format`                                              |
+| `{{TYPECHECK_BEFEHL}}`       | Type-Check                                                           | `npm run typecheck`                                           |
+| `{{CLEAN_BEFEHL}}`           | Build-Artefakte entfernen                                            | `Remove-Item -Recurse -Force dist`                            |
+| `{{CLEAN_INSTALL}}`          | Dependencies neu installieren                                        | `Remove-Item -Recurse -Force node_modules; npm install`       |
 
-Die Liste ist bewusst kurz — alles Weitere (Modul-Namen, DB-Tabellen, Feature-Gruppen) ist pro Projekt so unterschiedlich, dass Freitext besser funktioniert als weitere Tokens.
+Die Liste ist bewusst kurz — alles Weitere (Modul-Namen, DB-Tabellen, Feature-Gruppen) ist pro Projekt so unterschiedlich, dass Freitext besser funktioniert als weitere Tokens. Werte, die der Stack nicht eindeutig vorgibt (z.B. `{{TEST_WATCH_BEFEHL}}` in Projekten ohne Watch-Modus), bleiben beim Kickoff als `*(noch offen)*` stehen.
 
 ## Kompatibilität zu TakumiDeck
 
