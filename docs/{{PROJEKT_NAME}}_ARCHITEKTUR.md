@@ -23,7 +23,7 @@
 | App-Name in UI | `{{PROJEKT_NAME}}` |
 | `package.json` `name` | *(kebab-case, z.B. `projekt-name`)* |
 | AppData-Ordner | `{{PROJEKT_NAME}}` |
-| App-Bundle-ID (optional) | *(z.B. `de.makney.projektname`)* |
+| App-Bundle-ID (optional) | *(z.B. `de.beispielnutzer.projektname`)* |
 
 ---
 
